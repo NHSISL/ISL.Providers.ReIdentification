@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<Title>ISL.Providers.ReIdentification.Abstractions</Title>
+		<Product>ISL.Providers.ReIdentification.Abstractions</Product>
+		<PackageId>ISL.Providers.ReIdentification.Abstractions</PackageId>
+		<Authors>North East London ICB</Authors>
+		<Company>North East London ICB</Company>
+		<Description>
+			ISL.Providers.ReIdentification.Abstractions provides an abstraction for re-identification.
+			Interfaces defined in this package are implemented by classes in SPAL implementations of IReIdentificationOperations.
+		</Description>
+		<Copyright>North East London ICB - 2024 (c)</Copyright>
+		<PackageIcon>identity-card.png</PackageIcon>
+		<PackageProjectUrl>https://github.com/NHSISL/ISL.Providers.ReIdentification</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/NHSISL/ISL.Providers.ReIdentification</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>NHSISL; ReIdentification; Provider; Abstractions; .NET; The Standard; Standard;</PackageTags>
+		<PackageReleaseNotes>
+			Initial release of ISL.Providers.ReIdentification.Abstractions.
+		</PackageReleaseNotes>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<Version>0.0.0.1</Version>
+		<AssemblyVersion>0.0.0.1</AssemblyVersion>
+		<FileVersion>0.0.0.1</FileVersion>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>License.txt</PackageLicenseFile>
+		<IsPackable>true</IsPackable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<NoWarn>CS1998</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md">
+			<Pack>true</Pack>
+			<PackagePath></PackagePath>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Include="..\License.txt">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="..\Resources\Images\identity-card.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Xeption" Version="2.8.0" />
+	</ItemGroup>
+
+</Project>
