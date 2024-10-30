@@ -15,7 +15,7 @@ using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS.Responses;
 
 namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentifications
 {
-    public partial class ReIdentificationService : IReIdentificationService
+    internal partial class ReIdentificationService : IReIdentificationService
     {
         private readonly INECSBroker necsBroker;
         private readonly IIdentifierBroker identifierBroker;

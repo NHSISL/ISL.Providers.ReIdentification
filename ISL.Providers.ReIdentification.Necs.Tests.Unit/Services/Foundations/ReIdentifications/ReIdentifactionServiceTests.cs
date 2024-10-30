@@ -13,7 +13,6 @@ using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS;
 using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS.Requests;
 using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS.Responses;
 using ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentifications;
-using ISL.ReIdentification.Core.Models.Brokers.NECS.Requests;
 using KellermanSoftware.CompareNetObjects;
 using Moq;
 using RESTFulSense.Exceptions;

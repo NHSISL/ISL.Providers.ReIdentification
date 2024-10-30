@@ -12,7 +12,7 @@ using RESTFulSense.Clients;
 
 namespace ISL.Providers.ReIdentification.Necs.Brokers.Necs
 {
-    public class NECSBroker : INECSBroker
+    internal class NECSBroker : INECSBroker
     {
         private readonly NecsReIdentificationConfigurations necsConfiguration;
         private readonly IRESTFulApiFactoryClient apiClient;

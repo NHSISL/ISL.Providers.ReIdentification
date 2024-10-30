@@ -4,22 +4,24 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>disable</Nullable>
-		<Title>ISL.Providers.ReIdentification.Abstractions</Title>
-		<Product>ISL.Providers.ReIdentification.Abstractions</Product>
-		<PackageId>ISL.Providers.ReIdentification.Abstractions</PackageId>
+		<Title>ISL.Providers.ReIdentification.OfflineFileSources</Title>
+		<Product>ISL.Providers.ReIdentification.OfflineFileSources</Product>
+		<PackageId>ISL.Providers.ReIdentification.OfflineFileSources</PackageId>
 		<Authors>North East London ICB</Authors>
 		<Company>North East London ICB</Company>
 		<Description>
-			ISL.Providers.ReIdentification.Abstractions provides an abstraction for re-identification.
+			ISL.Providers.ReIdentification.OfflineFileSources provides a re-identification implementation 
+			for offline use i.e. for acceptance tests where we would use a file as a source of identification pairs
+			to manage test outcomes.
 		</Description>
 		<Copyright>North East London ICB - 2024 (c)</Copyright>
 		<PackageIcon>identity-card.png</PackageIcon>
 		<PackageProjectUrl>https://github.com/NHSISL/ISL.Providers.ReIdentification</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/NHSISL/ISL.Providers.ReIdentification</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>NHSISL; ReIdentification; Provider; Abstractions; .NET; The Standard; Standard;</PackageTags>
+		<PackageTags>NHSISL; Notifications; Provider; .NET; The Standard; Standard;</PackageTags>
 		<PackageReleaseNotes>
-			Initial release of ISL.Providers.ReIdentification.Abstractions.
+			Initial release of ISL.Providers.ReIdentification provider implementation for offline file sources.
 		</PackageReleaseNotes>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<Version>0.0.0.1</Version>
@@ -49,7 +51,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Xeption" Version="2.8.0" />
+		<InternalsVisibleTo Include="ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit" />
+		<InternalsVisibleTo Include="ISL.Providers.ReIdentification.OfflineFileSources.Tests.Acceptance" />
+		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+		<PackageReference Include="NHSISL.CsvHelperClient" Version="0.0.0.3" />
+		<PackageReference Include="Xeption" Version="2.8.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ISL.Providers.ReIdentification.Abstractions\ISL.Providers.ReIdentification.Abstractions.csproj" />
 	</ItemGroup>
 
 </Project>
