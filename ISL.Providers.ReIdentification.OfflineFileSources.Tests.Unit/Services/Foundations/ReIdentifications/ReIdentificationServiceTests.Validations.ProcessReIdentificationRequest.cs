@@ -128,7 +128,7 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.No
 
             invalidReIdentificationRequestException.AddData(
                 key: nameof(ReIdentificationRequest.ReIdentificationItems),
-                values: $"Items is invalid.  There are duplicate RowNumbers");
+                values: $"Items is invalid.  There are duplicate RowNumbers.");
 
             var expectedReIdentificationRequestValidationException =
                 new ReIdentificationRequestValidationException(
