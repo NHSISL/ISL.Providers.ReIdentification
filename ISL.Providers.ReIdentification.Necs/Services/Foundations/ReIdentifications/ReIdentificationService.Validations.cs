@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ISL.Providers.ReIdentification.Abstractions.Models;
 using ISL.Providers.ReIdentification.Necs.Models.Foundations.ReIdentifications.Exceptions;
-using ISL.ReIdentification.Core.Models.Brokers.NECS.Requests;
 
 namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentifications
 {

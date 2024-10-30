@@ -5,7 +5,6 @@
 using System;
 using System.Threading.Tasks;
 using ISL.Providers.ReIdentification.Abstractions.Models;
-using ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentifications;
 using ISL.Providers.ReIdentification.OfflineFileSources.Brokers.OfflineSources;
 using ISL.Providers.ReIdentification.OfflineFileSources.Models;
 using ISL.Providers.ReIdentification.OfflineFileSources.Models.Foundations.ReIdentifications.Exceptions;
@@ -101,7 +100,7 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Providers.OfflineFil
         }
 
         private void InitializeClients(IServiceProvider serviceProvider) =>
-            this.reIdentificationService = serviceProvider.GetRequiredService<ReIdentificationService>();
+            this.reIdentificationService = serviceProvider.GetRequiredService<IReIdentificationService>();
 
         private static IServiceProvider RegisterServices(OfflineSourceConfiguration offlineSourceConfiguration)
         {

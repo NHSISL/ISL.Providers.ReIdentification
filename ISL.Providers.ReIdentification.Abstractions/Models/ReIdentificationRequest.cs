@@ -4,7 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using ISL.ReIdentification.Core.Models.Brokers.NECS.Requests;
 
 namespace ISL.Providers.ReIdentification.Abstractions.Models
 {

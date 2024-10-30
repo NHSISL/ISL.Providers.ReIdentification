@@ -7,9 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using ISL.Providers.ReIdentification.Abstractions.Models;
 using ISL.Providers.ReIdentification.OfflineFileSources.Models.Foundations.ReIdentifications.Exceptions;
-using ISL.ReIdentification.Core.Models.Brokers.NECS.Requests;
 
-namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentifications
+namespace ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations.ReIdentifications
 {
     internal partial class ReIdentificationService
     {
@@ -40,7 +39,7 @@ namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentificat
         private static void ValidateIdentificationRequestItem(ReIdentificationItem reIdentificationItem)
         {
             Validate(
-                (Rule: IsInvalid(reIdentificationItem.RowNumber),
+                (Rule: IsInvalidRowNumber(reIdentificationItem.RowNumber),
                 Parameter: nameof(ReIdentificationItem.RowNumber)),
 
                 (Rule: IsInvalidIdentifier(reIdentificationItem.Identifier),
@@ -66,6 +65,12 @@ namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentificat
         {
             Condition = string.IsNullOrWhiteSpace(text),
             Message = "Text is invalid"
+        };
+
+        private static dynamic IsInvalidRowNumber(string text) => new
+        {
+            Condition = string.IsNullOrWhiteSpace(text),
+            Message = "Each identifier must have a corresponding row number."
         };
 
         private static dynamic IsInvalidIdentifier(string name) => new

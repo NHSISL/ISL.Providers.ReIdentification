@@ -8,7 +8,6 @@ using FluentAssertions;
 using ISL.Providers.ReIdentification.Abstractions.Models;
 using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS.Requests;
 using ISL.Providers.ReIdentification.Necs.Models.Foundations.ReIdentifications.Exceptions;
-using ISL.ReIdentification.Core.Models.Brokers.NECS.Requests;
 using Moq;
 
 namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.ReIdentifications

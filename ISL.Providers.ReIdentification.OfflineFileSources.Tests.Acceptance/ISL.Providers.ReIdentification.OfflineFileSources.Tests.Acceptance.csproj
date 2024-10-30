@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
@@ -32,7 +32,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ISL.Providers.ReIdentification.Necs\ISL.Providers.ReIdentification.Necs.csproj" />
+		<ProjectReference Include="..\ISL.Providers.ReIdentification.OfflineFileSources\ISL.Providers.ReIdentification.OfflineFileSources.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -40,12 +40,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="appsettings.Development.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
 	  <None Update="appsettings.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="Resources\IdentificationPairs.csv">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Resources\" />
 	</ItemGroup>
 
 </Project>

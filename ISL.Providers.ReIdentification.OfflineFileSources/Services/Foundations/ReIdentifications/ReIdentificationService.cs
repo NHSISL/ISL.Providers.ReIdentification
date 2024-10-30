@@ -8,9 +8,8 @@ using Force.DeepCloner;
 using ISL.Providers.ReIdentification.Abstractions.Models;
 using ISL.Providers.ReIdentification.OfflineFileSources.Brokers.OfflineSources;
 using ISL.Providers.ReIdentification.OfflineFileSources.Models;
-using ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations.ReIdentifications;
 
-namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentifications
+namespace ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations.ReIdentifications
 {
     internal partial class ReIdentificationService : IReIdentificationService
     {
@@ -38,7 +37,7 @@ namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentificat
                     if (string.IsNullOrWhiteSpace(item.RowNumber))
                     {
                         item.Identifier = offlineSourceConfiguration.DefaultIdentifier;
-                        item.Message = "Each identifier must have a corresponding RowId.";
+                        item.Message = "Each identifier must have a corresponding row number.";
                         continue;
                     }
 

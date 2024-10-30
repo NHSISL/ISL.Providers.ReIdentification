@@ -2,7 +2,7 @@
 // Copyright (c) North East London ICB. All rights reserved.
 // ---------------------------------------------------------
 
-namespace ISL.ReIdentification.Core.Models.Brokers.NECS.Requests
+namespace ISL.Providers.ReIdentification.Abstractions.Models
 {
     public class ReIdentificationItem
     {

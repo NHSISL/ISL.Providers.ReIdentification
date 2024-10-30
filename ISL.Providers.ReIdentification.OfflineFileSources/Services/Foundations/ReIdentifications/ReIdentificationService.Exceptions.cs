@@ -8,7 +8,7 @@ using ISL.Providers.ReIdentification.Abstractions.Models;
 using ISL.Providers.ReIdentification.OfflineFileSources.Models.Foundations.ReIdentifications.Exceptions;
 using Xeptions;
 
-namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentifications
+namespace ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations.ReIdentifications
 {
     internal partial class ReIdentificationService
     {
