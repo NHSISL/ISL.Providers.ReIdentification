@@ -17,7 +17,8 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>NHSISL; ReIdentification; Provider; .NET; The Standard; Standard;</PackageTags>
 		<PackageReleaseNotes>
-			Initial release of ISL.Providers.ReIdentification provider implementation for the NECS Api.
+			Initial release of ISL.Providers.ReIdentification.Necs
+			This provider is an implementation that wraps the NECS Api.
 		</PackageReleaseNotes>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<Version>0.0.0.1</Version>
