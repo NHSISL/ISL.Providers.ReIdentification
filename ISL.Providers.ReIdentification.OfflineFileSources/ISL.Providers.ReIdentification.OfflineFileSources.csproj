@@ -11,8 +11,8 @@
 		<Company>North East London ICB</Company>
 		<Description>
 			ISL.Providers.ReIdentification.OfflineFileSources provides a re-identification implementation 
-			for offline use i.e. for acceptance tests where we would use a file as a source of identification pairs
-			to manage test outcomes.
+			for offline use i.e. for acceptance tests where we would use a CSV file to control and manage
+			test outcomes.
 		</Description>
 		<Copyright>North East London ICB - 2024 (c)</Copyright>
 		<PackageIcon>identity-card.png</PackageIcon>
@@ -21,7 +21,8 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>NHSISL; Notifications; Provider; .NET; The Standard; Standard;</PackageTags>
 		<PackageReleaseNotes>
-			Initial release of ISL.Providers.ReIdentification provider implementation for offline file sources.
+			Initial release of ISL.Providers.ReIdentification.OfflineFileSources
+			This provider implementation performs reidentification from CSV file source.
 		</PackageReleaseNotes>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<Version>0.0.0.1</Version>
