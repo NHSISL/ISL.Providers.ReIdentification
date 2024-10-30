@@ -11,7 +11,7 @@ using Xeptions;
 
 namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentifications
 {
-    public partial class ReIdentificationService
+    internal partial class ReIdentificationService
     {
         private delegate ValueTask<ReIdentificationRequest> ReturningReIdentificationRequestFunction();
         private delegate ValueTask ReturningNothingFunction();

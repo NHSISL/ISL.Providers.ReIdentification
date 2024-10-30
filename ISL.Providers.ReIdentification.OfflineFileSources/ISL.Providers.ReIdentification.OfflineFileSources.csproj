@@ -11,8 +11,8 @@
 		<Company>North East London ICB</Company>
 		<Description>
 			ISL.Providers.ReIdentification.OfflineFileSources provides a re-identification implementation 
-			for offline use i.e. acceptance tests where external behaviour mocked and re-identification is 
-			achieved via a file source instead of using a real Api.
+			for offline use i.e. for acceptance tests where we would use a file as a source of identification pairs
+			to manage test outcomes.
 		</Description>
 		<Copyright>North East London ICB - 2024 (c)</Copyright>
 		<PackageIcon>identity-card.png</PackageIcon>

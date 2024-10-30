@@ -10,7 +10,7 @@ using ISL.Providers.ReIdentification.Necs.Models.Foundations.ReIdentifications.E
 
 namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentifications
 {
-    public partial class ReIdentificationService
+    internal partial class ReIdentificationService
     {
         private static void ValidateIdentificationRequestOnProcess(ReIdentificationRequest reIdentificationRequest)
         {

@@ -11,7 +11,6 @@
 		<Company>North East London ICB</Company>
 		<Description>
 			ISL.Providers.ReIdentification.Abstractions provides an abstraction for re-identification.
-			Interfaces defined in this package are implemented by classes in SPAL implementations of IReIdentificationOperations.
 		</Description>
 		<Copyright>North East London ICB - 2024 (c)</Copyright>
 		<PackageIcon>identity-card.png</PackageIcon>

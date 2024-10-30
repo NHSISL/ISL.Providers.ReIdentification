@@ -15,7 +15,7 @@ using Xeptions;
 
 namespace ISL.Providers.ReIdentification.OfflineFileSources.Providers.OfflineFileSources
 {
-    public class OfflineFileSourceProvider : IOfflineFileSourceProvider
+    internal class OfflineFileSourceProvider : IOfflineFileSourceProvider
     {
         private IReIdentificationService reIdentificationService { get; set; }
 

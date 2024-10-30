@@ -7,7 +7,7 @@ using ISL.Providers.ReIdentification.Abstractions.Models;
 
 namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentifications
 {
-    public interface IReIdentificationService
+    internal interface IReIdentificationService
     {
         ValueTask<ReIdentificationRequest> ProcessReIdentificationRequest(
             ReIdentificationRequest reIdentificationRequest);
