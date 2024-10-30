@@ -59,13 +59,13 @@ namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentificat
         private static dynamic IsInvalid(Guid id) => new
         {
             Condition = id == Guid.Empty,
-            Message = "Text is required"
+            Message = "Id is invalid"
         };
 
         private static dynamic IsInvalid(string text) => new
         {
             Condition = string.IsNullOrWhiteSpace(text),
-            Message = "Text is required"
+            Message = "Text is invalid"
         };
 
         private static dynamic IsInvalidIdentifier(string name) => new
