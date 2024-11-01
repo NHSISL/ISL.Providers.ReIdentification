@@ -16,7 +16,7 @@ namespace ISL.NotificationClient.Tests.Acceptance
 {
     public partial class ReIdentificationServiceTests
     {
-        private readonly IOfflineFileSourceProvider offlineFileSourceProvider;
+        private readonly IOfflineFileSourceReIdentificationProvider offlineFileSourceReIdentificationProvider;
         private readonly IConfiguration configuration;
 
         public ReIdentificationServiceTests()
@@ -28,18 +28,21 @@ namespace ISL.NotificationClient.Tests.Acceptance
 
             configuration = configurationBuilder.Build();
 
-            OfflineSourceConfiguration offlineSourceConfiguration = configuration
-                .GetSection("offlineSourceConfiguration").Get<OfflineSourceConfiguration>();
+            OfflineSourceReIdentificationConfiguration offlineSourceReIdentificationConfiguration = configuration
+                .GetSection("offlineSourceReIdentificationConfiguration")
+                    .Get<OfflineSourceReIdentificationConfiguration>();
 
             string assembly = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             char separator = Path.DirectorySeparatorChar;
 
             string inputFilePath = Path.Combine(
                 assembly,
-                offlineSourceConfiguration.FilePath.Replace('\\', separator).Replace('/', separator));
+                offlineSourceReIdentificationConfiguration.FilePath.Replace('\\', separator).Replace('/', separator));
 
-            offlineSourceConfiguration.FilePath = inputFilePath;
-            this.offlineFileSourceProvider = new OfflineFileSourceProvider(offlineSourceConfiguration);
+            offlineSourceReIdentificationConfiguration.FilePath = inputFilePath;
+
+            this.offlineFileSourceReIdentificationProvider =
+                new OfflineFileSourceReIdentificationProvider(offlineSourceReIdentificationConfiguration);
         }
 
         private static string GetRandomString() =>

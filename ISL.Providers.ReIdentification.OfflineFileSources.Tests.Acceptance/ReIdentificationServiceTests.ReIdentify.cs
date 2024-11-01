@@ -22,7 +22,7 @@ namespace ISL.NotificationClient.Tests.Acceptance
 
             // when
             ReIdentificationRequest actualResponse =
-                await this.offlineFileSourceProvider.ReIdentifyAsync(reIdentificationRequest);
+                await this.offlineFileSourceReIdentificationProvider.ReIdentifyAsync(reIdentificationRequest);
 
             // then
             actualResponse.Should().BeEquivalentTo(expectedResponse);
