@@ -14,14 +14,14 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations
     internal partial class ReIdentificationService : IReIdentificationService
     {
         private readonly IOfflineSourceBroker offlineSourceBroker;
-        private readonly OfflineSourceConfiguration offlineSourceConfiguration;
+        private readonly OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration;
 
         public ReIdentificationService(
             IOfflineSourceBroker offlineSourceBroker,
-            OfflineSourceConfiguration offlineSourceConfiguration)
+            OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration)
         {
             this.offlineSourceBroker = offlineSourceBroker;
-            this.offlineSourceConfiguration = offlineSourceConfiguration;
+            this.offlineSourceReIdentificationConfiguration = offlineSourceReIdentificationConfiguration;
         }
 
         public ValueTask<ReIdentificationRequest> ProcessReIdentificationRequest(
@@ -36,7 +36,7 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations
                 {
                     if (string.IsNullOrWhiteSpace(item.RowNumber))
                     {
-                        item.Identifier = offlineSourceConfiguration.DefaultIdentifier;
+                        item.Identifier = offlineSourceReIdentificationConfiguration.DefaultIdentifier;
                         item.Message = "Each identifier must have a corresponding row number.";
                         continue;
                     }
@@ -46,7 +46,7 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations
                         || item.Identifier.Length != 10
                         || item.Identifier.All(char.IsDigit) is false)
                     {
-                        item.Identifier = offlineSourceConfiguration.DefaultIdentifier;
+                        item.Identifier = offlineSourceReIdentificationConfiguration.DefaultIdentifier;
                         item.Message = "Identifier must be exactly 10 digits.";
                         continue;
                     }
@@ -56,7 +56,7 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations
 
                     if (maybeMatch is null)
                     {
-                        item.Identifier = offlineSourceConfiguration.DefaultIdentifier;
+                        item.Identifier = offlineSourceReIdentificationConfiguration.DefaultIdentifier;
                         item.Message = "Pseudo identifier not found in the offline source.";
                         continue;
                     }

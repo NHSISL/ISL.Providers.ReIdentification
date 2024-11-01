@@ -14,17 +14,17 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Brokers.OfflineSourc
     {
         private List<IdentificationPair> IdentificationPairs { get; set; }
 
-        public OfflineSourceBroker(OfflineSourceConfiguration offlineSourceConfiguration) =>
-            this.IdentificationPairs = InitializeAsync(offlineSourceConfiguration).Result;
+        public OfflineSourceBroker(OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration) =>
+            this.IdentificationPairs = InitializeAsync(offlineSourceReIdentificationConfiguration).Result;
 
         public async ValueTask<List<IdentificationPair>> GetIdentificationPairsAsync() =>
             this.IdentificationPairs;
 
         private async ValueTask<List<IdentificationPair>> InitializeAsync(
-            OfflineSourceConfiguration offlineSourceConfiguration)
+            OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration)
         {
             string fileContents =
-                await File.ReadAllTextAsync(offlineSourceConfiguration.FilePath);
+                await File.ReadAllTextAsync(offlineSourceReIdentificationConfiguration.FilePath);
 
             var csvClient = new CsvClient();
 
@@ -35,7 +35,7 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Brokers.OfflineSourc
             };
 
             return await csvClient.MapCsvToObjectAsync<IdentificationPair>(
-                fileContents, offlineSourceConfiguration.HasHeaderRecord, fieldMappings);
+                fileContents, offlineSourceReIdentificationConfiguration.HasHeaderRecord, fieldMappings);
         }
 
     }

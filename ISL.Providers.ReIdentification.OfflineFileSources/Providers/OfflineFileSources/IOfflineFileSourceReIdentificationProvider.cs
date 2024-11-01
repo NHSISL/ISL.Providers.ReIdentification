@@ -6,6 +6,6 @@ using ISL.Providers.ReIdentification.Abstractions;
 
 namespace ISL.Providers.ReIdentification.OfflineFileSources.Providers.OfflineFileSources
 {
-    internal interface IOfflineFileSourceProvider : IReIdentificationProvider
+    internal interface IOfflineFileSourceReIdentificationProvider : IReIdentificationProvider
     { }
 }

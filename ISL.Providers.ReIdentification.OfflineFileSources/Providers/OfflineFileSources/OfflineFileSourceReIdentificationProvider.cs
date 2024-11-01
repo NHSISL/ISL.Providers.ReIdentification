@@ -15,13 +15,14 @@ using Xeptions;
 
 namespace ISL.Providers.ReIdentification.OfflineFileSources.Providers.OfflineFileSources
 {
-    internal class OfflineFileSourceProvider : IOfflineFileSourceProvider
+    internal class OfflineFileSourceReIdentificationProvider : IOfflineFileSourceReIdentificationProvider
     {
         private IReIdentificationService reIdentificationService { get; set; }
 
-        public OfflineFileSourceProvider(OfflineSourceConfiguration offlineSourceConfiguration)
+        public OfflineFileSourceReIdentificationProvider(
+            OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration)
         {
-            IServiceProvider serviceProvider = RegisterServices(offlineSourceConfiguration);
+            IServiceProvider serviceProvider = RegisterServices(offlineSourceReIdentificationConfiguration);
             InitializeClients(serviceProvider);
         }
 
@@ -102,12 +103,13 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Providers.OfflineFil
         private void InitializeClients(IServiceProvider serviceProvider) =>
             this.reIdentificationService = serviceProvider.GetRequiredService<IReIdentificationService>();
 
-        private static IServiceProvider RegisterServices(OfflineSourceConfiguration offlineSourceConfiguration)
+        private static IServiceProvider RegisterServices(
+            OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration)
         {
             var serviceCollection = new ServiceCollection()
                 .AddTransient<IOfflineSourceBroker, OfflineSourceBroker>()
                 .AddTransient<IReIdentificationService, ReIdentificationService>()
-                .AddSingleton(offlineSourceConfiguration);
+                .AddSingleton(offlineSourceReIdentificationConfiguration);
 
             IServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 

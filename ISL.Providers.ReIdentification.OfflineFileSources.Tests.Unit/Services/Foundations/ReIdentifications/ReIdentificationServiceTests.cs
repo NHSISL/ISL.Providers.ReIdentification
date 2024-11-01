@@ -20,18 +20,18 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.No
     public partial class ReIdentificationServiceTests
     {
         private readonly Mock<IOfflineSourceBroker> offlineSourceBrokerMock;
-        private readonly OfflineSourceConfiguration offlineSourceConfiguration;
+        private readonly OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration;
         private readonly IReIdentificationService reIdentificationService;
         private readonly ICompareLogic compareLogic;
 
         public ReIdentificationServiceTests()
         {
             this.offlineSourceBrokerMock = new Mock<IOfflineSourceBroker>();
-            this.offlineSourceConfiguration = GetRandomConfigurations();
+            this.offlineSourceReIdentificationConfiguration = GetRandomConfigurations();
             this.compareLogic = new CompareLogic();
             this.reIdentificationService = new ReIdentificationService(
                 offlineSourceBroker: offlineSourceBrokerMock.Object,
-                offlineSourceConfiguration: this.offlineSourceConfiguration);
+                offlineSourceReIdentificationConfiguration: this.offlineSourceReIdentificationConfiguration);
         }
 
         private static string GetRandomString() =>
@@ -62,12 +62,12 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.No
             return randomNumber;
         }
 
-        private static OfflineSourceConfiguration GetRandomConfigurations() =>
+        private static OfflineSourceReIdentificationConfigurations GetRandomConfigurations() =>
             CreateConfigurationsFiller().Create();
 
-        private static Filler<OfflineSourceConfiguration> CreateConfigurationsFiller()
+        private static Filler<OfflineSourceReIdentificationConfigurations> CreateConfigurationsFiller()
         {
-            var filler = new Filler<OfflineSourceConfiguration>();
+            var filler = new Filler<OfflineSourceReIdentificationConfigurations>();
             filler.Setup();
 
             return filler;
