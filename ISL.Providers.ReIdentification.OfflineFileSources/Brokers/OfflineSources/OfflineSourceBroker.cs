@@ -14,14 +14,14 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Brokers.OfflineSourc
     {
         private List<IdentificationPair> IdentificationPairs { get; set; }
 
-        public OfflineSourceBroker(OfflineSourceReIdentificationConfiguration offlineSourceReIdentificationConfiguration) =>
+        public OfflineSourceBroker(OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration) =>
             this.IdentificationPairs = InitializeAsync(offlineSourceReIdentificationConfiguration).Result;
 
         public async ValueTask<List<IdentificationPair>> GetIdentificationPairsAsync() =>
             this.IdentificationPairs;
 
         private async ValueTask<List<IdentificationPair>> InitializeAsync(
-            OfflineSourceReIdentificationConfiguration offlineSourceReIdentificationConfiguration)
+            OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration)
         {
             string fileContents =
                 await File.ReadAllTextAsync(offlineSourceReIdentificationConfiguration.FilePath);

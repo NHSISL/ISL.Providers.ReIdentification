@@ -20,7 +20,7 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Providers.OfflineFil
         private IReIdentificationService reIdentificationService { get; set; }
 
         public OfflineFileSourceReIdentificationProvider(
-            OfflineSourceReIdentificationConfiguration offlineSourceReIdentificationConfiguration)
+            OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration)
         {
             IServiceProvider serviceProvider = RegisterServices(offlineSourceReIdentificationConfiguration);
             InitializeClients(serviceProvider);
@@ -104,7 +104,7 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Providers.OfflineFil
             this.reIdentificationService = serviceProvider.GetRequiredService<IReIdentificationService>();
 
         private static IServiceProvider RegisterServices(
-            OfflineSourceReIdentificationConfiguration offlineSourceReIdentificationConfiguration)
+            OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration)
         {
             var serviceCollection = new ServiceCollection()
                 .AddTransient<IOfflineSourceBroker, OfflineSourceBroker>()

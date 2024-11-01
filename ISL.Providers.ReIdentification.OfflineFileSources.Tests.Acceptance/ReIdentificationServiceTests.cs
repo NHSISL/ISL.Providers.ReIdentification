@@ -28,21 +28,21 @@ namespace ISL.NotificationClient.Tests.Acceptance
 
             configuration = configurationBuilder.Build();
 
-            OfflineSourceReIdentificationConfiguration offlineSourceReIdentificationConfiguration = configuration
-                .GetSection("offlineSourceReIdentificationConfiguration")
-                    .Get<OfflineSourceReIdentificationConfiguration>();
+            OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfigurations = configuration
+                .GetSection("offlineSourceReIdentificationConfigurations")
+                    .Get<OfflineSourceReIdentificationConfigurations>();
 
             string assembly = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             char separator = Path.DirectorySeparatorChar;
 
             string inputFilePath = Path.Combine(
                 assembly,
-                offlineSourceReIdentificationConfiguration.FilePath.Replace('\\', separator).Replace('/', separator));
+                offlineSourceReIdentificationConfigurations.FilePath.Replace('\\', separator).Replace('/', separator));
 
-            offlineSourceReIdentificationConfiguration.FilePath = inputFilePath;
+            offlineSourceReIdentificationConfigurations.FilePath = inputFilePath;
 
             this.offlineFileSourceReIdentificationProvider =
-                new OfflineFileSourceReIdentificationProvider(offlineSourceReIdentificationConfiguration);
+                new OfflineFileSourceReIdentificationProvider(offlineSourceReIdentificationConfigurations);
         }
 
         private static string GetRandomString() =>

@@ -14,11 +14,11 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations
     internal partial class ReIdentificationService : IReIdentificationService
     {
         private readonly IOfflineSourceBroker offlineSourceBroker;
-        private readonly OfflineSourceReIdentificationConfiguration offlineSourceReIdentificationConfiguration;
+        private readonly OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration;
 
         public ReIdentificationService(
             IOfflineSourceBroker offlineSourceBroker,
-            OfflineSourceReIdentificationConfiguration offlineSourceReIdentificationConfiguration)
+            OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration)
         {
             this.offlineSourceBroker = offlineSourceBroker;
             this.offlineSourceReIdentificationConfiguration = offlineSourceReIdentificationConfiguration;

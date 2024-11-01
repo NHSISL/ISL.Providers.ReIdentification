@@ -20,7 +20,7 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.No
     public partial class ReIdentificationServiceTests
     {
         private readonly Mock<IOfflineSourceBroker> offlineSourceBrokerMock;
-        private readonly OfflineSourceReIdentificationConfiguration offlineSourceReIdentificationConfiguration;
+        private readonly OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration;
         private readonly IReIdentificationService reIdentificationService;
         private readonly ICompareLogic compareLogic;
 
@@ -62,12 +62,12 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.No
             return randomNumber;
         }
 
-        private static OfflineSourceReIdentificationConfiguration GetRandomConfigurations() =>
+        private static OfflineSourceReIdentificationConfigurations GetRandomConfigurations() =>
             CreateConfigurationsFiller().Create();
 
-        private static Filler<OfflineSourceReIdentificationConfiguration> CreateConfigurationsFiller()
+        private static Filler<OfflineSourceReIdentificationConfigurations> CreateConfigurationsFiller()
         {
-            var filler = new Filler<OfflineSourceReIdentificationConfiguration>();
+            var filler = new Filler<OfflineSourceReIdentificationConfigurations>();
             filler.Setup();
 
             return filler;

@@ -4,7 +4,7 @@
 
 namespace ISL.Providers.ReIdentification.OfflineFileSources.Models
 {
-    public class OfflineSourceReIdentificationConfiguration
+    public class OfflineSourceReIdentificationConfigurations
     {
         public string FilePath { get; set; }
         public bool HasHeaderRecord { get; set; } = false;
