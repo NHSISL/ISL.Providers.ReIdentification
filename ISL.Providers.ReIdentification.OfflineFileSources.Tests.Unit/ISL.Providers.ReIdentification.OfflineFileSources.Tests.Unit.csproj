@@ -28,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ISL.Providers.ReIdentification.Necs\ISL.Providers.ReIdentification.Necs.csproj" />
+	  <ProjectReference Include="..\ISL.Providers.ReIdentification.OfflineFileSources\ISL.Providers.ReIdentification.OfflineFileSources.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

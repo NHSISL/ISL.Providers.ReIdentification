@@ -70,7 +70,7 @@ namespace ISL.Providers.ReIdentification.Infrastructure.Services
 
                                     With = new TargetDotNetVersionV3
                                     {
-                                        DotNetVersion = "8.0.302"
+                                        DotNetVersion = "9.0.100"
                                     }
                                 },
 
