@@ -13,7 +13,7 @@ using RESTFulSense.Clients;
 using Tynamix.ObjectFiller;
 using Xunit.Abstractions;
 
-namespace ISL.Providers.ReIdentification.Necs.Tests.Integrations
+namespace ISL.NecsApi.Tests.Integrations
 {
     public partial class NecsProviderTests
     {

@@ -8,11 +8,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
-using ISL.NecsApi.Tests.Integrations;
 using ISL.NecsApi.Tests.Integrations.Models.NECS.Requests;
 using ISL.NecsApi.Tests.Integrations.Models.NECS.Responses;
 
-namespace ISL.Providers.ReIdentification.Necs.Tests.Integrations
+namespace ISL.NecsApi.Tests.Integrations
 {
     public partial class NecsProviderTests
     {
