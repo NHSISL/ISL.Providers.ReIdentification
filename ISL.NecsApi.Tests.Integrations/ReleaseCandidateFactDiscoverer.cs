@@ -9,12 +9,12 @@ using Xunit.Sdk;
 
 namespace ISL.NecsApi.Tests.Integrations
 {
-    public class ReleaseCandidateTestCaseDiscoverer : IXunitTestCaseDiscoverer
+    public class ReleaseCandidateFactDiscoverer : IXunitTestCaseDiscoverer
     {
         private readonly IMessageSink diagnosticMessageSink;
         private readonly IConfiguration configuration;
 
-        public ReleaseCandidateTestCaseDiscoverer(IMessageSink diagnosticMessageSink)
+        public ReleaseCandidateFactDiscoverer(IMessageSink diagnosticMessageSink)
         {
             this.diagnosticMessageSink = diagnosticMessageSink;
 
