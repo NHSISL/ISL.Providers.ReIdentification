@@ -400,3 +400,4 @@ FodyWeavers.xsd
 /ISL.Providers.Notifications.GovukNotify.Tests.Acceptance/appsettings.Development.json
 /ISL.Providers.ReIdentification.Abstractions.Tests.Acceptance/appsettings.Development.json
 /ISL.Providers.ReIdentification.Necs.Tests.Integrations/appsettings.Development.json
+/ISL.NecsApi.Tests.Integrations/appsettings.Development.json
