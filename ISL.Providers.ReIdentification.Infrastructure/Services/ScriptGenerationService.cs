@@ -80,37 +80,37 @@ namespace ISL.Providers.ReIdentification.Infrastructure.Services
 
                                 new TestTask
                                 {
-                                    Name = "Abstraction - Unit Tests",
+                                    Name = "Unit Tests - Abstraction",
                                     Run = "dotnet test ISL.Providers.ReIdentification.Abstractions.Tests.Unit/ISL.Providers.ReIdentification.Abstractions.Tests.Unit.csproj --no-build --verbosity normal"
                                 },
 
                                 new TestTask
                                 {
-                                    Name = "Offline Provider - Unit Tests",
+                                    Name = "Unit Tests - Offline Provider",
                                     Run = "dotnet test ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit/ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.csproj --no-build --verbosity normal"
                                 },
 
                                 new TestTask
                                 {
-                                    Name = "NECS Provider - Unit Tests",
+                                    Name = "Unit Tests - NECS Provider",
                                     Run = "dotnet test ISL.Providers.ReIdentification.Necs.Tests.Unit/ISL.Providers.ReIdentification.Necs.Tests.Unit.csproj --no-build --verbosity normal"
                                 },
 
                                 new TestTask
                                 {
-                                    Name = "Abstraction - Acceptance Tests",
+                                    Name = "Acceptance Tests - Abstraction",
                                     Run = "dotnet test ISL.Providers.ReIdentification.Abstractions.Tests.Acceptance/ISL.Providers.ReIdentification.Abstractions.Tests.Acceptance.csproj --no-build --verbosity normal"
                                 },
 
                                 new TestTask
                                 {
-                                    Name = "Offline Provider - Acceptance Tests",
+                                    Name = "Acceptance Tests - Offline Provider",
                                     Run = "dotnet test ISL.Providers.ReIdentification.OfflineFileSources.Tests.Acceptance/ISL.Providers.ReIdentification.OfflineFileSources.Tests.Acceptance.csproj --no-build --verbosity normal"
                                 },
 
                                 new TestTask
                                 {
-                                    Name = "NECS Provider - Acceptance Tests",
+                                    Name = "Acceptance Tests - NECS Provider",
                                     Run = "dotnet test ISL.Providers.ReIdentification.Necs.Tests.Acceptance/ISL.Providers.ReIdentification.Necs.Tests.Acceptance.csproj --no-build --verbosity normal"
                                 },
                             }

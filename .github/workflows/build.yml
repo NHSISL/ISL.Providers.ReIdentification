@@ -26,17 +26,17 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Abstraction - Unit Tests
+    - name: Unit Tests - Abstraction
       run: dotnet test ISL.Providers.ReIdentification.Abstractions.Tests.Unit/ISL.Providers.ReIdentification.Abstractions.Tests.Unit.csproj --no-build --verbosity normal
-    - name: Offline Provider - Unit Tests
+    - name: Unit Tests - Offline Provider
       run: dotnet test ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit/ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.csproj --no-build --verbosity normal
-    - name: NECS Provider - Unit Tests
+    - name: Unit Tests - NECS Provider
       run: dotnet test ISL.Providers.ReIdentification.Necs.Tests.Unit/ISL.Providers.ReIdentification.Necs.Tests.Unit.csproj --no-build --verbosity normal
-    - name: Abstraction - Acceptance Tests
+    - name: Acceptance Tests - Abstraction
       run: dotnet test ISL.Providers.ReIdentification.Abstractions.Tests.Acceptance/ISL.Providers.ReIdentification.Abstractions.Tests.Acceptance.csproj --no-build --verbosity normal
-    - name: Offline Provider - Acceptance Tests
+    - name: Acceptance Tests - Offline Provider
       run: dotnet test ISL.Providers.ReIdentification.OfflineFileSources.Tests.Acceptance/ISL.Providers.ReIdentification.OfflineFileSources.Tests.Acceptance.csproj --no-build --verbosity normal
-    - name: NECS Provider - Acceptance Tests
+    - name: Acceptance Tests - NECS Provider
       run: dotnet test ISL.Providers.ReIdentification.Necs.Tests.Acceptance/ISL.Providers.ReIdentification.Necs.Tests.Acceptance.csproj --no-build --verbosity normal
     env:
       REIDENTIFICATIONCONFIGURATIONS__APIURL: ${{ secrets.REIDENTIFICATIONCONFIGURATIONS__APIURL }}
