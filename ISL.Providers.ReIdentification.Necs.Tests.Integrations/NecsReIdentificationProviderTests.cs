@@ -9,10 +9,15 @@ using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS;
 using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS.Requests;
 using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS.Responses;
 using ISL.Providers.ReIdentification.Necs.Providers.NecsReIdentifications;
+<<<<<<< HEAD
 using ISL.ReIdentification.Core.Models.Brokers.NECS.Requests;
 using Microsoft.Extensions.Configuration;
 using Tynamix.ObjectFiller;
 using WireMock.Server;
+=======
+using Microsoft.Extensions.Configuration;
+using Tynamix.ObjectFiller;
+>>>>>>> CODE RUB: Fixed merge issues
 
 namespace ISL.Providers.ReIdentification.Necs.Tests.Integrations
 {
@@ -20,7 +25,10 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Integrations
     {
         private readonly INecsReIdentificationProvider necsReIdentificationProvider;
         private readonly NecsReIdentificationConfigurations necsReIdentificationConfigurations;
+<<<<<<< HEAD
         private readonly WireMockServer wireMockServer;
+=======
+>>>>>>> CODE RUB: Fixed merge issues
         private readonly IConfiguration configuration;
 
         public NecsProviderTests()
