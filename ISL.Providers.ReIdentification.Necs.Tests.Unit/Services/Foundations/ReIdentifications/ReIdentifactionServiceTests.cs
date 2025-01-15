@@ -97,7 +97,7 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.Re
                     Reason = reIdentificationRequest.Reason,
                     PseudonymisedNumbers = reIdentificationRequest.ReIdentificationItems.Skip(i)
                     .Take(batchSize).ToList().Select(item =>
-                        new NecsPseudonymisedItem { RowNumber = item.RowNumber, Psuedo = item.Identifier })
+                        new NecsPseudonymisedItem { RowNumber = item.RowNumber, Pseudo = item.Identifier })
                             .ToList()
                 };
 

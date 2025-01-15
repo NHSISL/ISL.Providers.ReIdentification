@@ -67,7 +67,7 @@ namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentificat
 
                         List<NecsPseudonymisedItem> batch = reIdentificationRequest.ReIdentificationItems.Skip(i)
                             .Take(batchSize).ToList().Select(item =>
-                                new NecsPseudonymisedItem { RowNumber = item.RowNumber, Psuedo = item.Identifier })
+                                new NecsPseudonymisedItem { RowNumber = item.RowNumber, Pseudo = item.Identifier })
                                     .ToList();
 
                         necsReIdentificationRequest.PseudonymisedNumbers.AddRange(batch);
