@@ -18,11 +18,11 @@ namespace ISL.Providers.ReIdentification.Infrastructure.Services
         public ScriptGenerationService() =>
             adotNetClient = new ADotNetClient();
 
-        public void GenerateBuildScript(string branchName, string projectName)
+        public void GenerateBuildScript(string branchName, string projectName, string dotNetVersion)
         {
             var githubPipeline = new GithubPipeline
             {
-                Name = "Build",
+                Name = ".Net",
 
                 OnEvents = new Events
                 {
@@ -37,12 +37,6 @@ namespace ISL.Providers.ReIdentification.Infrastructure.Services
 
                 Jobs = new Dictionary<string, Job>
                 {
-                    {
-                        "label",
-                        new LabelJob(
-                            runsOn: BuildMachines.UbuntuLatest,
-                            githubToken: "${{ secrets.PAT_FOR_TAGGING }}")
-                    },
                     {
                         "build",
                         new Job
@@ -86,8 +80,39 @@ namespace ISL.Providers.ReIdentification.Infrastructure.Services
 
                                 new TestTask
                                 {
-                                    Name = "Test"
-                                }
+                                    Name = "Abstraction - Unit Tests",
+                                    Run = "dotnet test ISL.Providers.ReIdentification.Abstractions.Tests.Unit/ISL.Providers.ReIdentification.Abstractions.Tests.Unit.csproj --no-build --verbosity normal"
+                                },
+
+                                new TestTask
+                                {
+                                    Name = "Offline Provider - Unit Tests",
+                                    Run = "dotnet test ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit/ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.csproj --no-build --verbosity normal"
+                                },
+
+                                new TestTask
+                                {
+                                    Name = "NECS Provider - Unit Tests",
+                                    Run = "dotnet test ISL.Providers.ReIdentification.Necs.Tests.Unit/ISL.Providers.ReIdentification.Necs.Tests.Unit.csproj --no-build --verbosity normal"
+                                },
+
+                                new TestTask
+                                {
+                                    Name = "Abstraction - Acceptance Tests",
+                                    Run = "dotnet test ISL.Providers.ReIdentification.Abstractions.Tests.Acceptance/ISL.Providers.ReIdentification.Abstractions.Tests.Acceptance.csproj --no-build --verbosity normal"
+                                },
+
+                                new TestTask
+                                {
+                                    Name = "Offline Provider - Acceptance Tests",
+                                    Run = "dotnet test ISL.Providers.ReIdentification.OfflineFileSources.Tests.Acceptance/ISL.Providers.ReIdentification.OfflineFileSources.Tests.Acceptance.csproj --no-build --verbosity normal"
+                                },
+
+                                new TestTask
+                                {
+                                    Name = "NECS Provider - Acceptance Tests",
+                                    Run = "dotnet test ISL.Providers.ReIdentification.Necs.Tests.Acceptance/ISL.Providers.ReIdentification.Necs.Tests.Acceptance.csproj --no-build --verbosity normal"
+                                },
                             }
                         }
                     },
@@ -105,15 +130,66 @@ namespace ISL.Providers.ReIdentification.Infrastructure.Services
                     },
                     {
                         "publish",
-                        new PublishJob(
+                        new PublishJobV2(
                             runsOn: BuildMachines.UbuntuLatest,
                             dependsOn: "add_tag",
+                            dotNetVersion: dotNetVersion,
                             nugetApiKey: "${{ secrets.NUGET_ACCESS }}")
+                        {
+                            Name = "Publish to NuGet"
+                        }
                     }
                 }
             };
 
             string buildScriptPath = "../../../../.github/workflows/build.yml";
+            string directoryPath = Path.GetDirectoryName(buildScriptPath);
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            adotNetClient.SerializeAndWriteToFile(
+                adoPipeline: githubPipeline,
+                path: buildScriptPath);
+        }
+
+        public void GeneratePrLintScript(string branchName)
+        {
+            var githubPipeline = new GithubPipeline
+            {
+                Name = "PR Linter",
+
+                OnEvents = new Events
+                {
+                    PullRequest = new PullRequestEvent
+                    {
+                        Types = ["opened", "edited", "synchronize", "reopened", "closed"],
+                        Branches = [branchName]
+                    }
+                },
+
+                Jobs = new Dictionary<string, Job>
+                {
+                    {
+                        "label",
+                        new LabelJobV2(runsOn: BuildMachines.UbuntuLatest)
+                        {
+                            Name = "Add Label(s)",
+                        }
+                    },
+                    {
+                        "requireIssueOrTask",
+                        new RequireIssueOrTaskJob()
+                        {
+                            Name = "Require Issue Or Task Association",
+                        }
+                    },
+                }
+            };
+
+            string buildScriptPath = "../../../../.github/workflows/prLinter.yml";
             string directoryPath = Path.GetDirectoryName(buildScriptPath);
 
             if (!Directory.Exists(directoryPath))

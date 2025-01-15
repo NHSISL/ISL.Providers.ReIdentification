@@ -15,7 +15,7 @@ namespace ISL.NecsApi.Tests.Integrations
 {
     public partial class NecsProviderTests
     {
-        [ReleaseCandidateFact]
+        [Fact]
         public async Task ShouldReIdentifyAsync()
         {
             // Given

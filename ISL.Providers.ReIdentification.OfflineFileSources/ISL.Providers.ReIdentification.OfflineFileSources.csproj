@@ -58,8 +58,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
-		<PackageReference Include="NHSISL.CsvHelperClient" Version="0.0.0.3" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
+		<PackageReference Include="NHSISL.CsvHelperClient" Version="1.0.0.1" />
 		<PackageReference Include="Xeption" Version="2.8.0" />
 	</ItemGroup>
 
