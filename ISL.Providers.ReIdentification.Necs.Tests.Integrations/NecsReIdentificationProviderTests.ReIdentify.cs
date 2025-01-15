@@ -8,10 +8,6 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Force.DeepCloner;
 using ISL.Providers.ReIdentification.Abstractions.Models;
-<<<<<<< HEAD
-using ISL.ReIdentification.Core.Models.Brokers.NECS.Requests;
-=======
->>>>>>> CODE RUB: Fixed merge issues
 
 namespace ISL.Providers.ReIdentification.Necs.Tests.Integrations
 {
