@@ -2,15 +2,15 @@
 // Copyright (c) North East London ICB. All rights reserved.
 // ---------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
 using ISL.Providers.ReIdentification.Abstractions.Models;
-using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS.Requests;
-using ISL.Providers.ReIdentification.Necs.Models.Foundations.ReIdentifications.Exceptions;
+using ISL.Providers.ReIdentification.OfflineFileSources.Models.Foundations.ReIdentifications.Exceptions;
 using Moq;
 
-namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.ReIdentifications
+namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.Notifications
 {
     public partial class ReIdentificationServiceTests
     {
@@ -21,7 +21,7 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.Re
             ReIdentificationRequest nullReIdentificationRequest = null;
 
             var nullReIdentificationRequestException =
-                new NullReIdentificationRequestException(message: "Identification request is null.");
+                new NullReIdentificationRequestException(message: "Re-identification request is null.");
 
             var expectedReIdentificationRequestValidationException =
                 new ReIdentificationRequestValidationException(
@@ -40,12 +40,11 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.Re
             actualReIdentificationRequestValidationException.Should()
                 .BeEquivalentTo(expectedReIdentificationRequestValidationException);
 
-            this.necsBrokerMock.Verify(broker =>
-                broker.ReIdAsync(It.IsAny<NecsReIdentificationRequest>()),
+            this.offlineSourceBrokerMock.Verify(broker =>
+                broker.GetIdentificationPairsAsync(),
                     Times.Never);
 
-            this.necsBrokerMock.VerifyNoOtherCalls();
-            this.identifierBrokerMock.VerifyNoOtherCalls();
+            this.offlineSourceBrokerMock.VerifyNoOtherCalls();
         }
 
         [Theory]
@@ -58,6 +57,7 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.Re
             // given
             var invalidReIdentificationRequest = new ReIdentificationRequest
             {
+                RequestId = Guid.Empty,
                 UserIdentifier = invalidText,
                 Organisation = invalidText,
                 Reason = invalidText,
@@ -67,6 +67,10 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.Re
             var invalidReIdentificationRequestException =
                 new InvalidReIdentificationRequestException(
                     message: "Invalid re-identification request.  Please correct the errors and try again.");
+
+            invalidReIdentificationRequestException.AddData(
+                key: nameof(ReIdentificationRequest.RequestId),
+                values: "Id is invalid");
 
             invalidReIdentificationRequestException.AddData(
                 key: nameof(ReIdentificationRequest.UserIdentifier),
@@ -101,24 +105,21 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.Re
             actualReIdentificationRequestValidationException.Should()
                 .BeEquivalentTo(expectedReIdentificationRequestValidationException);
 
-            this.necsBrokerMock.Verify(broker =>
-                broker.ReIdAsync(It.IsAny<NecsReIdentificationRequest>()),
+            this.offlineSourceBrokerMock.Verify(broker =>
+                broker.GetIdentificationPairsAsync(),
                     Times.Never);
 
-            this.necsBrokerMock.VerifyNoOtherCalls();
-            this.identifierBrokerMock.VerifyNoOtherCalls();
+            this.offlineSourceBrokerMock.VerifyNoOtherCalls();
         }
 
         [Fact]
         public async Task ShouldThrowValidationExceptionOnProcessIfDuplicateRowNumbersFoundAndLogItAsync()
         {
-            // Given
-            int randomCount = GetRandomNumber();
-            string duplicateRowNumber = GetRandomString();
-            int batchSize = this.necsReIdentificationConfigurations.ApiMaxBatchSize;
-            ReIdentificationRequest randomReIdentificationRequest = CreateRandomReIdentificationRequest(count: randomCount);
-            randomReIdentificationRequest.ReIdentificationItems.ForEach(item => item.RowNumber = duplicateRowNumber);
-            ReIdentificationRequest invalidReIdentificationRequest = randomReIdentificationRequest;
+            // given
+            ReIdentificationRequest randomReIdentificationRequest = CreateRandomReIdentificationRequest();
+
+            randomReIdentificationRequest.ReIdentificationItems
+                .AddRange(randomReIdentificationRequest.ReIdentificationItems);
 
             var invalidReIdentificationRequestException =
                 new InvalidReIdentificationRequestException(
@@ -126,7 +127,7 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.Re
 
             invalidReIdentificationRequestException.AddData(
                 key: nameof(ReIdentificationRequest.ReIdentificationItems),
-                values: "Items is invalid.  There are duplicate RowNumbers.");
+                values: $"Items is invalid.  There are duplicate RowNumbers.");
 
             var expectedReIdentificationRequestValidationException =
                 new ReIdentificationRequestValidationException(
@@ -135,7 +136,7 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.Re
 
             // when
             ValueTask<ReIdentificationRequest> addReIdentificationRequestTask =
-                this.reIdentificationService.ProcessReIdentificationRequest(invalidReIdentificationRequest);
+                this.reIdentificationService.ProcessReIdentificationRequest(randomReIdentificationRequest);
 
             ReIdentificationRequestValidationException actualReIdentificationRequestValidationException =
                 await Assert.ThrowsAsync<ReIdentificationRequestValidationException>(
@@ -145,12 +146,11 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.Re
             actualReIdentificationRequestValidationException.Should()
                 .BeEquivalentTo(expectedReIdentificationRequestValidationException);
 
-            this.necsBrokerMock.Verify(broker =>
-                broker.ReIdAsync(It.IsAny<NecsReIdentificationRequest>()),
+            this.offlineSourceBrokerMock.Verify(broker =>
+                broker.GetIdentificationPairsAsync(),
                     Times.Never);
 
-            this.necsBrokerMock.VerifyNoOtherCalls();
-            this.identifierBrokerMock.VerifyNoOtherCalls();
+            this.offlineSourceBrokerMock.VerifyNoOtherCalls();
         }
     }
 }

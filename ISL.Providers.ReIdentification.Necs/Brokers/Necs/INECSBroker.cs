@@ -8,7 +8,7 @@ using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS.Responses;
 
 namespace ISL.Providers.ReIdentification.Necs.Brokers.Necs
 {
-    public interface INECSBroker
+    internal interface INECSBroker
     {
         ValueTask<NecsReIdentificationResponse> ReIdAsync(NecsReIdentificationRequest necsReIdentificationRequest);
     }

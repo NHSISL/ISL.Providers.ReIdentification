@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ISL.Providers.ReIdentification.Necs.Brokers.Identifiers
 {
-    public interface IIdentifierBroker
+    internal interface IIdentifierBroker
     {
         ValueTask<Guid> GetIdentifierAsync();
     }

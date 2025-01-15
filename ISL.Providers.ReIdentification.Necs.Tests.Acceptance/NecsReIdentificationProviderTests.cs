@@ -9,7 +9,6 @@ using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS;
 using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS.Requests;
 using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS.Responses;
 using ISL.Providers.ReIdentification.Necs.Providers.NecsReIdentifications;
-using ISL.ReIdentification.Core.Models.Brokers.NECS.Requests;
 using Microsoft.Extensions.Configuration;
 using Tynamix.ObjectFiller;
 using WireMock.Server;

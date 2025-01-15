@@ -5,7 +5,7 @@
 using System.Threading.Tasks;
 using ISL.Providers.ReIdentification.Abstractions.Models;
 
-namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentifications
+namespace ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations.ReIdentifications
 {
     internal interface IReIdentificationService
     {

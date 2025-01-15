@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ISL.Providers.ReIdentification.Abstractions.Models;
-using ISL.Providers.ReIdentification.Necs.Models.Foundations.ReIdentifications.Exceptions;
+using ISL.Providers.ReIdentification.OfflineFileSources.Models.Foundations.ReIdentifications.Exceptions;
 
-namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentifications
+namespace ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations.ReIdentifications
 {
     internal partial class ReIdentificationService
     {
@@ -17,6 +17,9 @@ namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentificat
             ValidateIdentificationRequestIsNotNull(reIdentificationRequest);
 
             Validate(
+                (Rule: IsInvalid(reIdentificationRequest.RequestId),
+                Parameter: nameof(ReIdentificationRequest.RequestId)),
+
                 (Rule: IsInvalid(reIdentificationRequest.ReIdentificationItems),
                 Parameter: nameof(ReIdentificationRequest.ReIdentificationItems)),
 
@@ -33,11 +36,22 @@ namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentificat
                 Parameter: nameof(ReIdentificationRequest.ReIdentificationItems)));
         }
 
+        private static void ValidateIdentificationRequestItem(ReIdentificationItem reIdentificationItem)
+        {
+            Validate(
+                (Rule: IsInvalidRowNumber(reIdentificationItem.RowNumber),
+                Parameter: nameof(ReIdentificationItem.RowNumber)),
+
+                (Rule: IsInvalidIdentifier(reIdentificationItem.Identifier),
+                Parameter: nameof(ReIdentificationItem.Identifier)));
+        }
+
+
         private static void ValidateIdentificationRequestIsNotNull(ReIdentificationRequest reIdentificationRequest)
         {
             if (reIdentificationRequest is null)
             {
-                throw new NullReIdentificationRequestException("Identification request is null.");
+                throw new NullReIdentificationRequestException("Re-identification request is null.");
             }
         }
 
@@ -47,11 +61,30 @@ namespace ISL.Providers.ReIdentification.Necs.Services.Foundations.ReIdentificat
             Message = "Id is invalid"
         };
 
-        private static dynamic IsInvalid(string name) => new
+        private static dynamic IsInvalid(string text) => new
         {
-            Condition = String.IsNullOrWhiteSpace(name),
+            Condition = string.IsNullOrWhiteSpace(text),
             Message = "Text is invalid"
         };
+
+        private static dynamic IsInvalidRowNumber(string text) => new
+        {
+            Condition = string.IsNullOrWhiteSpace(text),
+            Message = "Each identifier must have a corresponding row number."
+        };
+
+        private static dynamic IsInvalidIdentifier(string name) => new
+        {
+            Condition = String.IsNullOrWhiteSpace(name) || IsExactTenDigits(name) is false,
+            Message = "Text must be exactly 10 digits."
+        };
+
+        private static bool IsExactTenDigits(string input)
+        {
+            bool result = input.Length == 10 && input.All(char.IsDigit);
+
+            return result;
+        }
 
         private static dynamic IsInvalid(List<ReIdentificationItem> reIdentificationItems) => new
         {
