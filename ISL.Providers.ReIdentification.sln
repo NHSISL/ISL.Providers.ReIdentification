@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OfflineFiles", "OfflineFile
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISL.NecsApi.Tests.Integrations", "ISL.NecsApi.Tests.Integrations\ISL.NecsApi.Tests.Integrations.csproj", "{CFA465BC-A2C6-4AD7-930A-15BE079752EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISL.Providers.ReIdentification.Necs.Tests.Integrations", "ISL.Providers.ReIdentification.Necs.Tests.Integrations\ISL.Providers.ReIdentification.Necs.Tests.Integrations.csproj", "{E73665FA-AE66-4AE7-B3B8-3DEC316039D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{CFA465BC-A2C6-4AD7-930A-15BE079752EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFA465BC-A2C6-4AD7-930A-15BE079752EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFA465BC-A2C6-4AD7-930A-15BE079752EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E73665FA-AE66-4AE7-B3B8-3DEC316039D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E73665FA-AE66-4AE7-B3B8-3DEC316039D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E73665FA-AE66-4AE7-B3B8-3DEC316039D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E73665FA-AE66-4AE7-B3B8-3DEC316039D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{2B796AAA-5C90-4FF2-A66D-57D4CF83DFCF} = {0B3F9412-F7C7-48F7-8A6D-A8F869109ACE}
 		{8D1844CB-D1E7-4CDA-9C9E-44F6A793C4C7} = {0B3F9412-F7C7-48F7-8A6D-A8F869109ACE}
 		{CFA465BC-A2C6-4AD7-930A-15BE079752EA} = {2B796AAA-5C90-4FF2-A66D-57D4CF83DFCF}
+		{E73665FA-AE66-4AE7-B3B8-3DEC316039D0} = {2B796AAA-5C90-4FF2-A66D-57D4CF83DFCF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {71F274A5-5D15-4661-9D0B-01EBBFF052BA}
