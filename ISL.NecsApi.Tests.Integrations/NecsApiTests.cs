@@ -4,10 +4,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using ISL.NecsApi.Tests.Integrations.Models;
 using ISL.NecsApi.Tests.Integrations.Models.NECS.Requests;
+using ISL.NecsApi.Tests.Integrations.Models.NECS.Responses;
 using Microsoft.Extensions.Configuration;
 using RESTFulSense.Clients;
 using Tynamix.ObjectFiller;
@@ -84,6 +87,26 @@ namespace ISL.NecsApi.Tests.Integrations
                 .OnProperty(address => address.Pseudo).Use(GetRandomStringWithLengthOf(10));
 
             return filler;
+        }
+
+        private async Task<(bool isSuccess, TimeSpan elapsedTime)> SendRequestAsync(NecsReIdentificationRequest request)
+        {
+            var stopwatch = Stopwatch.StartNew();
+            try
+            {
+                var result = await apiClient.PostContentAsync<NecsReIdentificationRequest, NecsReIdentificationResponse>
+                    (necsConfiguration.ApiUrl, request);
+                return (result != null, stopwatch.Elapsed);
+            }
+            catch (Exception ex)
+            {
+                output.WriteLine($"Request failed: {ex.Message}");
+                return (false, stopwatch.Elapsed);
+            }
+            finally
+            {
+                stopwatch.Stop();
+            }
         }
 
         private static List<string> PseudoNumbers()

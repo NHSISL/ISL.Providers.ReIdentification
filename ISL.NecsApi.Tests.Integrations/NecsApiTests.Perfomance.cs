@@ -15,26 +15,6 @@ namespace ISL.NecsApi.Tests.Integrations
 {
     public partial class NecsProviderTests
     {
-        [Fact]
-        public async Task ShouldReIdentifyAsync()
-        {
-            // Given
-            int randomCount = GetRandomNumber();
-
-            NecsReIdentificationRequest randomReIdentificationRequest =
-                CreateRandomNecsReIdentificationRequest(count: randomCount);
-
-            // When
-            var result =
-                await apiClient.PostContentAsync<NecsReIdentificationRequest, NecsReIdentificationResponse>
-                    (necsConfiguration.ApiUrl, randomReIdentificationRequest);
-
-            // Then
-            result.Should().NotBeNull();
-            result.ProcessedCount.Should().Be(randomCount);
-            output.WriteLine($"ElapsedTime: {result.ElapsedTime}");
-        }
-
         [Theory]
         [InlineData(1)]
         [InlineData(5)]
@@ -170,26 +150,6 @@ namespace ISL.NecsApi.Tests.Integrations
             successCount.Should().BeGreaterThan(
                 expected: (int)(numberOfRequests * 0.9),
                 because: "at least 90% of requests should succeed");
-        }
-
-        private async Task<(bool isSuccess, TimeSpan elapsedTime)> SendRequestAsync(NecsReIdentificationRequest request)
-        {
-            var stopwatch = Stopwatch.StartNew();
-            try
-            {
-                var result = await apiClient.PostContentAsync<NecsReIdentificationRequest, NecsReIdentificationResponse>
-                    (necsConfiguration.ApiUrl, request);
-                return (result != null, stopwatch.Elapsed);
-            }
-            catch (Exception ex)
-            {
-                output.WriteLine($"Request failed: {ex.Message}");
-                return (false, stopwatch.Elapsed);
-            }
-            finally
-            {
-                stopwatch.Stop();
-            }
         }
     }
 }
