@@ -109,6 +109,18 @@ namespace ISL.NecsApi.Tests.Integrations
             }
         }
 
+        public static TheoryData<string> MissingItems()
+        {
+            return new TheoryData<string>
+            {
+                "RequestId",
+                "PseudonymisedNumbers",
+                "UserIdentifier",
+                "Organisation",
+                "Reason"
+            };
+        }
+
         private static List<string> PseudoNumbers()
         {
             List<string> pseudonymisedNumbers = new List<string>
