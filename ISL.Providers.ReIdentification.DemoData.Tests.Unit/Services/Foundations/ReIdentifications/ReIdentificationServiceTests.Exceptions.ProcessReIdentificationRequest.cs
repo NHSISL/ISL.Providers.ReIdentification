@@ -6,10 +6,11 @@ using System;
 using System.Threading.Tasks;
 using FluentAssertions;
 using ISL.Providers.ReIdentification.Abstractions.Models;
-using ISL.Providers.ReIdentification.OfflineFileSources.Models.Foundations.ReIdentifications.Exceptions;
+using ISL.Providers.ReIdentification.DemoData.Models.Foundations.ReIdentifications.Exceptions;
+using ISL.Providers.ReIdentification.DemoData.Services.Foundations.ReIdentifications;
 using Moq;
 
-namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.Foundations.Notifications
+namespace ISL.Providers.ReIdentification.DemoData.Tests.Unit.Services.Foundations.Notifications
 {
     public partial class ReIdentificationServiceTests
     {
@@ -17,9 +18,17 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.
         public async Task ShouldThrowServiceExceptionOnProcessIfServiceErrorOccurredAndLogItAsync()
         {
             // given
+            var mockReIdentificationService = new Mock<ReIdentificationService>(
+                this.demoDataReIdentificationConfigurations)
+            {
+                CallBase = true
+            };
+
             int randomCount = GetRandomNumber();
             var serviceException = new Exception();
-            ReIdentificationRequest someIdentificationRequest = CreateRandomReIdentificationRequest();
+
+            ReIdentificationRequest someIdentificationRequest =
+                CreateRandomReIdentificationRequest(count: randomCount);
 
             var failedServiceReIdentificationException =
                 new FailedServiceReIdentificationException(
@@ -32,13 +41,13 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.
                     message: "Re-identification service error occurred, please contact support.",
                     innerException: failedServiceReIdentificationException);
 
-            offlineSourceBrokerMock.Setup(service =>
-                service.GetIdentificationPairsAsync())
-                    .ThrowsAsync(serviceException);
+            mockReIdentificationService.Setup(service =>
+                service.ValidateIdentificationRequestOnProcess(It.IsAny<ReIdentificationRequest>()))
+                    .Throws(serviceException);
 
             // when
             ValueTask<ReIdentificationRequest> processIdentificationRequestTask =
-                reIdentificationService.ProcessReIdentificationRequest(someIdentificationRequest);
+                mockReIdentificationService.Object.ProcessReIdentificationRequest(someIdentificationRequest);
 
             ReIdentificationServiceException actualReIdentificationServiceException =
                 await Assert.ThrowsAsync<ReIdentificationServiceException>(
@@ -48,11 +57,9 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.
             actualReIdentificationServiceException.Should().BeEquivalentTo(
                 expectedReIdentificationServiceException);
 
-            offlineSourceBrokerMock.Verify(service =>
-                service.GetIdentificationPairsAsync(),
+            mockReIdentificationService.Verify(service =>
+                service.ValidateIdentificationRequestOnProcess(It.IsAny<ReIdentificationRequest>()),
                     Times.Once);
-
-            this.offlineSourceBrokerMock.VerifyNoOtherCalls();
         }
     }
 }

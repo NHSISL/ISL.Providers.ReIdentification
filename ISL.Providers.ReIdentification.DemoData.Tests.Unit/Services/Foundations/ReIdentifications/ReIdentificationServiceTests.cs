@@ -8,30 +8,25 @@ using System.Linq;
 using System.Linq.Expressions;
 using Force.DeepCloner;
 using ISL.Providers.ReIdentification.Abstractions.Models;
-using ISL.Providers.ReIdentification.OfflineFileSources.Brokers.OfflineSources;
-using ISL.Providers.ReIdentification.OfflineFileSources.Models;
-using ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations.ReIdentifications;
+using ISL.Providers.ReIdentification.DemoData.Models;
+using ISL.Providers.ReIdentification.DemoData.Services.Foundations.ReIdentifications;
 using KellermanSoftware.CompareNetObjects;
-using Moq;
 using Tynamix.ObjectFiller;
 
-namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.Foundations.Notifications
+namespace ISL.Providers.ReIdentification.DemoData.Tests.Unit.Services.Foundations.Notifications
 {
     public partial class ReIdentificationServiceTests
     {
-        private readonly Mock<IOfflineSourceBroker> offlineSourceBrokerMock;
-        private readonly OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration;
+        private readonly DemoDataReIdentificationConfigurations demoDataReIdentificationConfigurations;
         private readonly IReIdentificationService reIdentificationService;
         private readonly ICompareLogic compareLogic;
 
         public ReIdentificationServiceTests()
         {
-            this.offlineSourceBrokerMock = new Mock<IOfflineSourceBroker>();
-            this.offlineSourceReIdentificationConfiguration = GetRandomConfigurations();
+            this.demoDataReIdentificationConfigurations = GetRandomConfigurations();
             this.compareLogic = new CompareLogic();
             this.reIdentificationService = new ReIdentificationService(
-                offlineSourceBroker: offlineSourceBrokerMock.Object,
-                offlineSourceReIdentificationConfiguration: this.offlineSourceReIdentificationConfiguration);
+                demoDataReIdentificationConfigurations: this.demoDataReIdentificationConfigurations);
         }
 
         private static string GetRandomString() =>
@@ -62,13 +57,15 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.
             return randomNumber;
         }
 
-        private static OfflineSourceReIdentificationConfigurations GetRandomConfigurations() =>
+        private static DemoDataReIdentificationConfigurations GetRandomConfigurations() =>
             CreateConfigurationsFiller().Create();
 
-        private static Filler<OfflineSourceReIdentificationConfigurations> CreateConfigurationsFiller()
+        private static Filler<DemoDataReIdentificationConfigurations> CreateConfigurationsFiller()
         {
-            var filler = new Filler<OfflineSourceReIdentificationConfigurations>();
-            filler.Setup();
+            var filler = new Filler<DemoDataReIdentificationConfigurations>();
+            filler.Setup()
+                .OnProperty(config => config.DefaultIdentifier).Use("0000000000")
+                .OnProperty(config => config.DemoPrefix).Use(GetRandomStringWithLengthOf(length: 3).ToUpper());
 
             return filler;
         }
@@ -78,38 +75,29 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.
             actualDictionary => this.compareLogic.Compare(expectedDictionary, actualDictionary).AreEqual;
 
         private static ReIdentificationRequest CreateRandomReIdentificationResponse(
-            ReIdentificationRequest request, List<IdentificationPair> identificationPairs)
+            ReIdentificationRequest request, string prefix)
         {
             var response = request.DeepClone();
 
             foreach (var item in response.ReIdentificationItems)
             {
-                item.Identifier = identificationPairs
-                    .First(identifier => identifier.PseudoNumber == item.Identifier).NhsNumber;
-
+                string demoNhsNumber = prefix + item.Identifier.Substring(0, 7);
+                item.Identifier = demoNhsNumber;
                 item.Message = "OK";
             }
 
             return response;
         }
 
-        private static ReIdentificationRequest CreateRandomReIdentificationRequest()
-        {
-            int randomCount = GetRandomNumber();
-            List<IdentificationPair> randomIdentificationPairs = CreateRandomIdentificationPairs(randomCount);
+        private static ReIdentificationRequest CreateRandomReIdentificationRequest(int count) =>
+            CreateReIdentificationRequestFiller(count).Create();
 
-            return CreateRandomReIdentificationRequest(randomIdentificationPairs);
-        }
-
-        private static ReIdentificationRequest CreateRandomReIdentificationRequest(
-            List<IdentificationPair> identificationPairs) =>
-            CreateReIdentificationRequestFiller(identificationPairs).Create();
-
-        private static Filler<ReIdentificationRequest> CreateReIdentificationRequestFiller(
-            List<IdentificationPair> identificationPairs)
+        private static Filler<ReIdentificationRequest> CreateReIdentificationRequestFiller(int count)
         {
             var filler = new Filler<ReIdentificationRequest>();
-            List<string> pseudoNumbers = identificationPairs.Select(pair => pair.PseudoNumber).ToList();
+
+            List<string> pseudoNumbers = Enumerable.Range(1, count)
+                .Select(i => $"{GenerateRandom10DigitNumber()}").ToList();
 
             filler.Setup()
                 .OnProperty(request => request.ReIdentificationItems)
