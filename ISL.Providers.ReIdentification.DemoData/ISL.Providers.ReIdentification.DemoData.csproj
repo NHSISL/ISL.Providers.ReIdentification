@@ -1,0 +1,70 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<Title>ISL.Providers.ReIdentification.DemoData</Title>
+		<Product>ISL.Providers.ReIdentification.DemoData</Product>
+		<PackageId>ISL.Providers.ReIdentification.DemoData</PackageId>
+		<Authors>North East London ICB</Authors>
+		<Company>North East London ICB</Company>
+		<Description>
+			ISL.Providers.ReIdentification.DemoData provides a re-identification implementation 
+			for test purposes.
+		</Description>
+		<Copyright>North East London ICB - 2024 (c)</Copyright>
+		<PackageIcon>identity-card.png</PackageIcon>
+		<PackageProjectUrl>https://github.com/NHSISL/ISL.Providers.ReIdentification</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/NHSISL/ISL.Providers.ReIdentification</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>NHSISL; Notifications; Provider; .NET; The Standard; Standard;</PackageTags>
+		<PackageReleaseNotes>
+			Initial release of ISL.Providers.ReIdentification.DemoData
+			ISL.Providers.ReIdentification.DemoData provides a re-identification implementation for test purposes.
+		</PackageReleaseNotes>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<Version>0.0.0.4</Version>
+		<AssemblyVersion>0.0.0.4</AssemblyVersion>
+		<FileVersion>0.0.0.4</FileVersion>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>License.txt</PackageLicenseFile>
+		<IsPackable>true</IsPackable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<NoWarn>CS1998</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md">
+			<Pack>true</Pack>
+			<PackagePath></PackagePath>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Include="..\License.txt">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="..\Resources\Images\identity-card.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="ISL.Providers.ReIdentification.DemoData.Tests.Unit" />
+		<InternalsVisibleTo Include="ISL.Providers.ReIdentification.DemoData.Tests.Acceptance" />
+		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentAssertions" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
+		<PackageReference Include="NHSISL.CsvHelperClient" Version="1.0.0.1" />
+		<PackageReference Include="Xeption" Version="2.8.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ISL.Providers.ReIdentification.Abstractions\ISL.Providers.ReIdentification.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

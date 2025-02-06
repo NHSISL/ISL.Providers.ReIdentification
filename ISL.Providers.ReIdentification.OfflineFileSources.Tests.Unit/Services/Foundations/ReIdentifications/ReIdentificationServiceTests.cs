@@ -15,7 +15,7 @@ using KellermanSoftware.CompareNetObjects;
 using Moq;
 using Tynamix.ObjectFiller;
 
-namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.Notifications
+namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.Foundations.Notifications
 {
     public partial class ReIdentificationServiceTests
     {
