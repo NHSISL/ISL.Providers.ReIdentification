@@ -12,9 +12,9 @@ namespace ISL.Providers.ReIdentification.DemoData.Models.Providers.Exceptions
     /// This exception is thrown when a validation error occurs while using the provider.
     /// For example, if required data is missing or invalid.
     /// </summary>
-    public class OfflineFileSourceProviderValidationException : Xeption, IReIdentificationProviderValidationException
+    public class DemoDataProviderValidationException : Xeption, IReIdentificationProviderValidationException
     {
-        public OfflineFileSourceProviderValidationException(string message, Xeption innerException, IDictionary data)
+        public DemoDataProviderValidationException(string message, Xeption innerException, IDictionary data)
             : base(message: message, innerException, data)
         { }
     }

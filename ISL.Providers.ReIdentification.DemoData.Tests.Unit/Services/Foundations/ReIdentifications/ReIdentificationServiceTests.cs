@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Force.DeepCloner;
 using ISL.Providers.ReIdentification.Abstractions.Models;
 using ISL.Providers.ReIdentification.DemoData.Models;
@@ -31,13 +30,6 @@ namespace ISL.Providers.ReIdentification.DemoData.Tests.Unit.Services.Foundation
 
         private static string GetRandomString() =>
             new MnemonicString().GetValue();
-
-        private static string GetRandomString(int length)
-        {
-            string result = new MnemonicString(wordCount: 1, wordMinLength: length, wordMaxLength: length).GetValue();
-
-            return result.Length > length ? result.Substring(0, length) : result;
-        }
 
         private static int GetRandomNumber() =>
             new IntRange(max: 15, min: 2).GetValue();
@@ -69,10 +61,6 @@ namespace ISL.Providers.ReIdentification.DemoData.Tests.Unit.Services.Foundation
 
             return filler;
         }
-
-        private Expression<Func<Dictionary<string, dynamic>, bool>> SameDictionaryAs(
-            Dictionary<string, dynamic> expectedDictionary) =>
-            actualDictionary => this.compareLogic.Compare(expectedDictionary, actualDictionary).AreEqual;
 
         private static ReIdentificationRequest CreateRandomReIdentificationResponse(
             ReIdentificationRequest request, string prefix)
@@ -120,28 +108,6 @@ namespace ISL.Providers.ReIdentification.DemoData.Tests.Unit.Services.Foundation
             }
 
             return reIdentificationItems;
-        }
-
-        private static Filler<ReIdentificationItem> CreateIdentificationItemFiller()
-        {
-            var filler = new Filler<ReIdentificationItem>();
-            filler.Setup().OnProperty(address => address.Identifier).Use(GetRandomStringWithLengthOf(10));
-
-            return filler;
-        }
-
-        private static List<IdentificationPair> CreateRandomIdentificationPairs(int count) =>
-            CreateIdentificationPair().Create(count).ToList();
-
-        private static Filler<IdentificationPair> CreateIdentificationPair()
-        {
-            var filler = new Filler<IdentificationPair>();
-
-            filler.Setup()
-                .OnProperty(identifierPair => identifierPair.PseudoNumber).Use(GenerateRandom10DigitNumber())
-                .OnProperty(identifierPair => identifierPair.NhsNumber).Use(GenerateRandom10DigitNumber());
-
-            return filler;
         }
     }
 }

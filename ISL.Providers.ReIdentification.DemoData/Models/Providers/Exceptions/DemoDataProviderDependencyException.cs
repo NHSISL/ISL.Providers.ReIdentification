@@ -11,9 +11,9 @@ namespace ISL.Providers.ReIdentification.DemoData.Models.Providers.Exceptions
     /// This exception is thrown when a dependency error occurs while using the provider.
     /// For example, if a required dependency is unavailable or incompatible.
     /// </summary>
-    public class OfflineFileSourceProviderDependencyException : Xeption, IReIdentificationProviderDependencyException
+    public class DemoDataProviderDependencyException : Xeption, IReIdentificationProviderDependencyException
     {
-        public OfflineFileSourceProviderDependencyException(string message, Xeption innerException)
+        public DemoDataProviderDependencyException(string message, Xeption innerException)
             : base(message, innerException)
         { }
     }

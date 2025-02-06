@@ -30,16 +30,6 @@ namespace ISL.Providers.ReIdentification.DemoData.Services.Foundations.ReIdentif
             {
                 throw await CreateAndLogValidationExceptionAsync(invalidIdentificationRequestException);
             }
-            catch (AggregateException aggregateException)
-            {
-                var failedServiceIdentificationRequestException =
-                    new FailedServiceReIdentificationException(
-                        message: "Failed re-identification aggregate service error occurred, please contact support.",
-                        innerException: aggregateException,
-                        data: aggregateException.Data);
-
-                throw await CreateAndLogServiceExceptionAsync(failedServiceIdentificationRequestException);
-            }
             catch (Exception exception)
             {
                 var failedServiceIdentificationRequestException =
@@ -60,26 +50,6 @@ namespace ISL.Providers.ReIdentification.DemoData.Services.Foundations.ReIdentif
                 innerException: exception);
 
             return accessAuditValidationException;
-        }
-
-        private async ValueTask<ReIdentificationDependencyValidationException>
-            CreateAndLogDependencyValidationExceptionAsync(Xeption exception)
-        {
-            var reIdentificationDependencyValidationException = new ReIdentificationDependencyValidationException(
-                message: "Re-identification dependency validation error occurred, fix errors and try again.",
-                innerException: exception);
-
-            return reIdentificationDependencyValidationException;
-        }
-
-        private async ValueTask<ReIdentificationDependencyException> CreateAndLogDependencyExceptionAsync(
-            Xeption exception)
-        {
-            var reIdentificationDependencyException = new ReIdentificationDependencyException(
-                message: "Re-identification dependency error occurred, contact support.",
-                innerException: exception);
-
-            return reIdentificationDependencyException;
         }
 
         private async ValueTask<ReIdentificationServiceException> CreateAndLogServiceExceptionAsync(

@@ -11,9 +11,9 @@ namespace ISL.Providers.ReIdentification.DemoData.Models.Providers.Exceptions
     /// This exception is thrown when a service error occurs while using the provider. 
     /// For example, if there is a problem with the server or any other service failure.
     /// </summary>
-    public class OfflineFileSourceProviderServiceException : Xeption, IReIdentificationProviderServiceException
+    public class DemoDataProviderServiceException : Xeption, IReIdentificationProviderServiceException
     {
-        public OfflineFileSourceProviderServiceException(string message, Xeption innerException)
+        public DemoDataProviderServiceException(string message, Xeption innerException)
             : base(message, innerException)
         { }
     }

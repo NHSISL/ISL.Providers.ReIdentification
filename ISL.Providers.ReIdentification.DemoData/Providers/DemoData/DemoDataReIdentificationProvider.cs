@@ -33,10 +33,10 @@ namespace ISL.Providers.ReIdentification.DemoData.Providers.DemoData
         /// If the re-identification could not happen due to pseudo identifiers being valid, the identifier will be
         /// replaced by 0000000000 and the message field will be populated with a reason.
         /// </returns>
-        /// <exception cref="OfflineFileSourceProviderValidationException" />
-        /// <exception cref="OfflineFileSourceProviderDependencyValidationException" />
-        /// <exception cref="OfflineFileSourceProviderDependencyException" />
-        /// <exception cref="OfflineFileSourceProviderServiceException" />
+        /// <exception cref="DemoDataProviderValidationException" />
+        /// <exception cref="DemoDataProviderDependencyValidationException" />
+        /// <exception cref="DemoDataProviderDependencyException" />
+        /// <exception cref="DemoDataProviderServiceException" />
         public async ValueTask<ReIdentificationRequest> ReIdentifyAsync(
             ReIdentificationRequest reIdentificationRequest)
         {
@@ -66,35 +66,35 @@ namespace ISL.Providers.ReIdentification.DemoData.Providers.DemoData
             }
         }
 
-        private static OfflineFileSourceProviderValidationException CreateProviderValidationException(
+        private static DemoDataProviderValidationException CreateProviderValidationException(
             Xeption innerException)
         {
-            return new OfflineFileSourceProviderValidationException(
+            return new DemoDataProviderValidationException(
                 message: "Offline file source provider validation error occurred, fix errors and try again.",
                 innerException,
                 data: innerException.Data);
         }
 
-        private static OfflineFileSourceProviderDependencyValidationException CreateProviderDependencyValidationException(
+        private static DemoDataProviderDependencyValidationException CreateProviderDependencyValidationException(
             Xeption innerException)
         {
-            return new OfflineFileSourceProviderDependencyValidationException(
+            return new DemoDataProviderDependencyValidationException(
                 message: "Offline file source provider dependency validation error occurred, fix errors and try again.",
                 innerException,
                 data: innerException.Data);
         }
 
-        private static OfflineFileSourceProviderDependencyException CreateProviderDependencyException(
+        private static DemoDataProviderDependencyException CreateProviderDependencyException(
             Xeption innerException)
         {
-            return new OfflineFileSourceProviderDependencyException(
+            return new DemoDataProviderDependencyException(
                 message: "Offline file source provider dependency error occurred, contact support.",
                 innerException);
         }
 
-        private static OfflineFileSourceProviderServiceException CreateProviderServiceException(Xeption innerException)
+        private static DemoDataProviderServiceException CreateProviderServiceException(Xeption innerException)
         {
-            return new OfflineFileSourceProviderServiceException(
+            return new DemoDataProviderServiceException(
                 message: "Offline file source provider service error occurred, contact support.",
                 innerException);
         }
