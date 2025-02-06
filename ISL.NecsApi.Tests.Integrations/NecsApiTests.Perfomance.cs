@@ -116,7 +116,7 @@ namespace ISL.NecsApi.Tests.Integrations
         {
             // Given
             int numberOfRequests = requests;
-            int randomCount = 100;
+            int randomCount = 500;
             List<Task<(bool isSuccess, TimeSpan elapsedTime)>> tasks = new();
 
             // When
