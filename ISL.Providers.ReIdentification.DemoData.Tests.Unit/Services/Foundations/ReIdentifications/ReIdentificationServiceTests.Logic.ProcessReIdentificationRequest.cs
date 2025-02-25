@@ -2,16 +2,12 @@
 // Copyright (c) North East London ICB. All rights reserved.
 // ---------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Force.DeepCloner;
 using ISL.Providers.ReIdentification.Abstractions.Models;
-using ISL.Providers.ReIdentification.OfflineFileSources.Models;
-using Moq;
 
-namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.Foundations.Notifications
+namespace ISL.Providers.ReIdentification.DemoData.Tests.Unit.Services.Foundations.Notifications
 {
     public partial class ReIdentificationServiceTests
     {
@@ -20,23 +16,18 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.
         {
             // given
             int randomCount = GetRandomNumber();
-            List<IdentificationPair> randomIdentificationPairs = CreateRandomIdentificationPairs(randomCount);
-            List<string> pseudoNumbers = randomIdentificationPairs.Select(pair => pair.PseudoNumber).ToList();
-            List<string> nhsNumbers = randomIdentificationPairs.Select(pair => pair.NhsNumber).ToList();
 
             ReIdentificationRequest randomReIdentificationRequest =
-                CreateRandomReIdentificationRequest(randomIdentificationPairs);
+                CreateRandomReIdentificationRequest(count: randomCount);
 
             ReIdentificationRequest randomReIdentificationResponse =
-                CreateRandomReIdentificationResponse(randomReIdentificationRequest, randomIdentificationPairs);
+                CreateRandomReIdentificationResponse(
+                    request: randomReIdentificationRequest,
+                    prefix: demoDataReIdentificationConfigurations.DemoPrefix);
 
             ReIdentificationRequest input = randomReIdentificationRequest.DeepClone();
             ReIdentificationRequest output = randomReIdentificationResponse.DeepClone();
             ReIdentificationRequest expectedResponse = output.DeepClone();
-
-            this.offlineSourceBrokerMock.Setup(broker =>
-                broker.GetIdentificationPairsAsync())
-                    .ReturnsAsync(randomIdentificationPairs);
 
             // when
             ReIdentificationRequest actualResponse = await this.reIdentificationService
@@ -44,12 +35,6 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.
 
             // then
             actualResponse.Should().BeEquivalentTo(expectedResponse);
-
-            this.offlineSourceBrokerMock.Verify(broker =>
-                broker.GetIdentificationPairsAsync(),
-                    Times.Exactly(input.ReIdentificationItems.Count));
-
-            this.offlineSourceBrokerMock.VerifyNoOtherCalls();
         }
     }
 }

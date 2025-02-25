@@ -7,10 +7,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
 using ISL.Providers.ReIdentification.Abstractions.Models;
-using ISL.Providers.ReIdentification.OfflineFileSources.Models.Foundations.ReIdentifications.Exceptions;
-using Moq;
+using ISL.Providers.ReIdentification.DemoData.Models.Foundations.ReIdentifications.Exceptions;
 
-namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.Foundations.Notifications
+namespace ISL.Providers.ReIdentification.DemoData.Tests.Unit.Services.Foundations.Notifications
 {
     public partial class ReIdentificationServiceTests
     {
@@ -39,12 +38,6 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.
             // then
             actualReIdentificationRequestValidationException.Should()
                 .BeEquivalentTo(expectedReIdentificationRequestValidationException);
-
-            this.offlineSourceBrokerMock.Verify(broker =>
-                broker.GetIdentificationPairsAsync(),
-                    Times.Never);
-
-            this.offlineSourceBrokerMock.VerifyNoOtherCalls();
         }
 
         [Theory]
@@ -104,19 +97,16 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.
             // then
             actualReIdentificationRequestValidationException.Should()
                 .BeEquivalentTo(expectedReIdentificationRequestValidationException);
-
-            this.offlineSourceBrokerMock.Verify(broker =>
-                broker.GetIdentificationPairsAsync(),
-                    Times.Never);
-
-            this.offlineSourceBrokerMock.VerifyNoOtherCalls();
         }
 
         [Fact]
         public async Task ShouldThrowValidationExceptionOnProcessIfDuplicateRowNumbersFoundAndLogItAsync()
         {
             // given
-            ReIdentificationRequest randomReIdentificationRequest = CreateRandomReIdentificationRequest();
+            int randomCount = GetRandomNumber();
+
+            ReIdentificationRequest randomReIdentificationRequest =
+                CreateRandomReIdentificationRequest(count: randomCount);
 
             randomReIdentificationRequest.ReIdentificationItems
                 .AddRange(randomReIdentificationRequest.ReIdentificationItems);
@@ -145,12 +135,6 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.
             // then
             actualReIdentificationRequestValidationException.Should()
                 .BeEquivalentTo(expectedReIdentificationRequestValidationException);
-
-            this.offlineSourceBrokerMock.Verify(broker =>
-                broker.GetIdentificationPairsAsync(),
-                    Times.Never);
-
-            this.offlineSourceBrokerMock.VerifyNoOtherCalls();
         }
     }
 }
