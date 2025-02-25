@@ -11,7 +11,7 @@ namespace ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS.Requests
         [JsonProperty("rowId")]
         public string RowNumber { get; set; }
 
-        [JsonProperty("psuedo")]
-        public string Psuedo { get; set; }
+        [JsonProperty("pseudo")]
+        public string Pseudo { get; set; }
     }
 }

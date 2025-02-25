@@ -19,9 +19,6 @@ namespace ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS.Requests
         [JsonProperty("userIdentifier")]
         public string UserIdentifier { get; set; }
 
-        [JsonProperty("purpose")]
-        public string Purpose { get; set; }
-
         [JsonProperty("organisation")]
         public string Organisation { get; set; }
 

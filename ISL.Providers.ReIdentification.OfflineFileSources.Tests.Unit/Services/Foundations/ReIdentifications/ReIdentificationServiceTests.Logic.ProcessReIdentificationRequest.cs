@@ -11,7 +11,7 @@ using ISL.Providers.ReIdentification.Abstractions.Models;
 using ISL.Providers.ReIdentification.OfflineFileSources.Models;
 using Moq;
 
-namespace ISL.Providers.ReIdentification.Necs.Tests.Unit.Services.Foundations.Notifications
+namespace ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.Services.Foundations.Notifications
 {
     public partial class ReIdentificationServiceTests
     {

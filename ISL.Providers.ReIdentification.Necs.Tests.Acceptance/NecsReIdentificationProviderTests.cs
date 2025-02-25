@@ -91,7 +91,7 @@ namespace ISL.NotificationClient.Tests.Acceptance
                 Reason = randomRequest.Reason,
 
                 PseudonymisedNumbers = randomRequest.ReIdentificationItems
-                    .Select(item => new NecsPseudonymisedItem { RowNumber = item.RowNumber, Psuedo = item.Identifier })
+                    .Select(item => new NecsPseudonymisedItem { RowNumber = item.RowNumber, Pseudo = item.Identifier })
                     .ToList(),
             };
 
