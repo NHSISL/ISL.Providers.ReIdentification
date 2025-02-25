@@ -2,15 +2,19 @@
 // Copyright (c) North East London ICB. All rights reserved.
 // ---------------------------------------------------------
 
-using System;
+using Newtonsoft.Json;
 
-namespace ISL.Providers.ReIdentification.Abstractions.Models
+namespace ISL.NecsApi.Tests.Integrations.Models.NECS.Responses
 {
-    public class ReIdentificationItem
+    public class NecsReidentifiedItem
     {
+        [JsonProperty("rowId")]
         public string RowNumber { get; set; }
-        public string Identifier { get; set; }
+
+        [JsonProperty("nhsNumber")]
+        public string NhsNumber { get; set; }
+
+        [JsonProperty("message")]
         public string Message { get; set; }
-        public Guid AssociatedRequestId { get; set; }
     }
 }

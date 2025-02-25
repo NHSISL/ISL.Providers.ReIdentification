@@ -11,15 +11,13 @@ using ISL.Providers.ReIdentification.Necs.Models.Brokers.NECS.Responses;
 using ISL.Providers.ReIdentification.Necs.Providers.NecsReIdentifications;
 using Microsoft.Extensions.Configuration;
 using Tynamix.ObjectFiller;
-using WireMock.Server;
 
-namespace ISL.NotificationClient.Tests.Acceptance
+namespace ISL.Providers.ReIdentification.Necs.Tests.Integrations
 {
     public partial class NecsProviderTests
     {
         private readonly INecsReIdentificationProvider necsReIdentificationProvider;
         private readonly NecsReIdentificationConfigurations necsReIdentificationConfigurations;
-        private readonly WireMockServer wireMockServer;
         private readonly IConfiguration configuration;
 
         public NecsProviderTests()
@@ -30,12 +28,9 @@ namespace ISL.NotificationClient.Tests.Acceptance
                 .AddEnvironmentVariables();
 
             configuration = configurationBuilder.Build();
-            this.wireMockServer = WireMockServer.Start();
 
             this.necsReIdentificationConfigurations = configuration
                 .GetSection("necsReIdentificationConfigurations").Get<NecsReIdentificationConfigurations>();
-
-            necsReIdentificationConfigurations.ApiUrl = wireMockServer.Url;
 
             this.necsReIdentificationProvider = new NecsReIdentificationProvider(necsReIdentificationConfigurations);
         }
