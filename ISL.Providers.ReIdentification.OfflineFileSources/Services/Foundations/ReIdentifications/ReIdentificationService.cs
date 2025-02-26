@@ -43,11 +43,11 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations
 
                     if (
                         string.IsNullOrWhiteSpace(item.Identifier)
-                        || item.Identifier.Length != 10
+                        || item.Identifier.Length > 15
                         || item.Identifier.All(char.IsDigit) is false)
                     {
                         item.Identifier = offlineSourceReIdentificationConfiguration.DefaultIdentifier;
-                        item.Message = "Identifier must be exactly 10 digits.";
+                        item.Message = "Identifier must be 15 digits or less.";
                         continue;
                     }
 
