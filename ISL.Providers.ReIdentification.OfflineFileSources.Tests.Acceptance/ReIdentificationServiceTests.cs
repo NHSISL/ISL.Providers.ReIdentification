@@ -95,8 +95,8 @@ namespace ISL.NotificationClient.Tests.Acceptance
                     new ReIdentificationItem { RowNumber = "5", Identifier = "0000000005" },
                     new ReIdentificationItem { RowNumber = "6", Identifier = GenerateRandomNumber() },
                     new ReIdentificationItem { RowNumber = "", Identifier =  GenerateRandomNumber() },
-                    new ReIdentificationItem { RowNumber = "8", Identifier = GenerateRandomNumber(9) },
-                    new ReIdentificationItem { RowNumber = "9", Identifier = GenerateRandomNumber(11) },
+                    new ReIdentificationItem { RowNumber = "8", Identifier = GenerateRandomNumber(16) },
+                    new ReIdentificationItem { RowNumber = "9", Identifier = GenerateRandomNumber(17) },
                 }
             };
 
