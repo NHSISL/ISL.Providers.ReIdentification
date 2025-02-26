@@ -162,17 +162,17 @@ namespace ISL.NotificationClient.Tests.Acceptance
 
                 if (
                     string.IsNullOrWhiteSpace(item.Identifier)
-                    || item.Identifier.Length != 10
+                    || item.Identifier.Length > 15
                     || item.Identifier.All(char.IsDigit) is false)
                 {
                     result.Identifier = demoDataReIdentificationConfigurations.DefaultIdentifier;
-                    result.Message = "Identifier must be exactly 10 digits.";
+                    result.Message = "Identifier must be less than 15 digits.";
                     request.ReIdentificationItems.Add(result);
                     continue;
                 }
 
                 var demoNhsNumber = demoDataReIdentificationConfigurations.DemoPrefix +
-                    item.Identifier.Substring(0, 7);
+                      item.Identifier.PadLeft(7, '0');
 
                 result.Identifier = demoNhsNumber;
                 result.Message = "OK";

@@ -39,16 +39,16 @@ namespace ISL.Providers.ReIdentification.DemoData.Services.Foundations.ReIdentif
 
                     if (
                         string.IsNullOrWhiteSpace(item.Identifier)
-                        || item.Identifier.Length != 10
+                        || item.Identifier.Length > 15
                         || item.Identifier.All(char.IsDigit) is false)
                     {
                         item.Identifier = demoDataReIdentificationConfigurations.DefaultIdentifier;
-                        item.Message = "Identifier must be exactly 10 digits.";
+                        item.Message = "Identifier must be less than 15 digits.";
                         continue;
                     }
 
                     var demoNhsNumber = demoDataReIdentificationConfigurations.DemoPrefix +
-                        item.Identifier.Substring(0, 7);
+                        item.Identifier.PadLeft(7, '0');
 
                     item.Identifier = demoNhsNumber;
                     item.Message = "OK";
