@@ -32,7 +32,7 @@ namespace ISL.Providers.ReIdentification.Necs.Tests.Integrations
             };
 
             ReIdentificationRequest expectedResponse = inputRequest.DeepClone();
-            expectedResponse.ReIdentificationItems[0].Identifier = "DEC1111112";
+            expectedResponse.ReIdentificationItems[0].Identifier = "DEC1112000";
             expectedResponse.ReIdentificationItems[0].Message = "OK";
 
             // when

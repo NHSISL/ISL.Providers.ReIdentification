@@ -48,7 +48,7 @@ namespace ISL.Providers.ReIdentification.DemoData.Services.Foundations.ReIdentif
                     }
 
                     var demoNhsNumber = demoDataReIdentificationConfigurations.DemoPrefix +
-                        item.Identifier.PadLeft(7, '0');
+                        item.Identifier.PadLeft(10, '0').Substring(0, 7);
 
                     item.Identifier = demoNhsNumber;
                     item.Message = "OK";

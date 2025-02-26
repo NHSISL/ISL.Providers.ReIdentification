@@ -166,7 +166,7 @@ namespace ISL.NotificationClient.Tests.Acceptance
                     || item.Identifier.All(char.IsDigit) is false)
                 {
                     result.Identifier = demoDataReIdentificationConfigurations.DefaultIdentifier;
-                    result.Message = "Identifier must be less than 15 digits.";
+                    result.Message = "Identifier must be 15 digits or less.";
                     request.ReIdentificationItems.Add(result);
                     continue;
                 }

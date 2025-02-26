@@ -133,12 +133,12 @@ namespace ISL.NotificationClient.Tests.Acceptance
                     new ReIdentificationItem {
                         RowNumber = "8",
                         Identifier = "0000000000",
-                        Message = "Identifier must be less than 15 digits." },
+                        Message = "Identifier must be 15 digits or less." },
 
                     new ReIdentificationItem {
                         RowNumber = "9",
                         Identifier = "0000000000",
-                        Message = "Identifier must be less than 15 digits." },
+                        Message = "Identifier must be 15 digits or less." },
                 }
             };
 
