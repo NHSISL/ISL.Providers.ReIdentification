@@ -47,7 +47,7 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Services.Foundations
                         || item.Identifier.All(char.IsDigit) is false)
                     {
                         item.Identifier = offlineSourceReIdentificationConfiguration.DefaultIdentifier;
-                        item.Message = "Identifier must be less than 15 digits.";
+                        item.Message = "Identifier must be 15 digits or less.";
                         continue;
                     }
 

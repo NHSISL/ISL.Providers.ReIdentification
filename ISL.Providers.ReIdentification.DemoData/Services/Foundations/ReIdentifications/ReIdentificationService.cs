@@ -43,7 +43,7 @@ namespace ISL.Providers.ReIdentification.DemoData.Services.Foundations.ReIdentif
                         || item.Identifier.All(char.IsDigit) is false)
                     {
                         item.Identifier = demoDataReIdentificationConfigurations.DefaultIdentifier;
-                        item.Message = "Identifier must be less than 15 digits.";
+                        item.Message = "Identifier must be 15 digits or less.";
                         continue;
                     }
 
