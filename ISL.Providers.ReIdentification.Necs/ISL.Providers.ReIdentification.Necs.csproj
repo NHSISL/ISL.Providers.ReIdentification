@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
@@ -56,7 +56,7 @@
 	<ItemGroup>
 		<PackageReference Include="FluentAssertions" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.2" />
-		<PackageReference Include="RESTFulSense" Version="3.1.0" />
+		<PackageReference Include="RESTFulSense" Version="3.2.0" />
 		<PackageReference Include="Xeption" Version="2.8.0" />
 	</ItemGroup>
 
