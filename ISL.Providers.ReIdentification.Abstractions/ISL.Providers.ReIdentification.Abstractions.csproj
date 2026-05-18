@@ -49,7 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="FluentAssertions" Version="7.2.2" />
+	  <PackageReference Include="FluentAssertions" Version="[7.2.2]" />
 	  <PackageReference Include="Xeption" Version="2.9.0" />
 	</ItemGroup>
 
