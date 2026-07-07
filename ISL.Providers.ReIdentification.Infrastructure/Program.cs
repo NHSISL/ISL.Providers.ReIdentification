@@ -15,7 +15,7 @@ namespace ISL.Providers.ReIdentification.Infrastructure
             scriptGenerationService.GenerateBuildScript(
                 branchName: "main",
                 projectName: "ISL.Providers.ReIdentification.Abstractions",
-                dotNetVersion: "9.0.100");
+                dotNetVersion: "10.0.100");
 
             scriptGenerationService.GeneratePrLintScript("main");
         }
