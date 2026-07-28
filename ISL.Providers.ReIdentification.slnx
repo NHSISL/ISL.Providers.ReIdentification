@@ -1,0 +1,25 @@
+<Solution>
+  <Folder Name="/Abstraction Provider/">
+    <Project Path="ISL.Providers.ReIdentification.Abstractions.Tests.Acceptance/ISL.Providers.ReIdentification.Abstractions.Tests.Acceptance.csproj" />
+    <Project Path="ISL.Providers.ReIdentification.Abstractions.Tests.Unit/ISL.Providers.ReIdentification.Abstractions.Tests.Unit.csproj" />
+    <Project Path="ISL.Providers.ReIdentification.Abstractions/ISL.Providers.ReIdentification.Abstractions.csproj" />
+  </Folder>
+  <Folder Name="/Providers/" />
+  <Folder Name="/Providers/DemoData/">
+    <Project Path="ISL.Providers.ReIdentification.DemoData.Tests.Acceptance/ISL.Providers.ReIdentification.DemoData.Tests.Acceptance.csproj" />
+    <Project Path="ISL.Providers.ReIdentification.DemoData.Tests.Unit/ISL.Providers.ReIdentification.DemoData.Tests.Unit.csproj" />
+    <Project Path="ISL.Providers.ReIdentification.DemoData/ISL.Providers.ReIdentification.DemoData.csproj" />
+  </Folder>
+  <Folder Name="/Providers/NECS/">
+    <Project Path="ISL.Providers.ReIdentification.Necs.Tests.Acceptance/ISL.Providers.ReIdentification.Necs.Tests.Acceptance.csproj" />
+    <Project Path="ISL.Providers.ReIdentification.Necs.Tests.Integrations/ISL.Providers.ReIdentification.Necs.Tests.Integrations.csproj" />
+    <Project Path="ISL.Providers.ReIdentification.Necs.Tests.Unit/ISL.Providers.ReIdentification.Necs.Tests.Unit.csproj" />
+    <Project Path="ISL.Providers.ReIdentification.Necs/ISL.Providers.ReIdentification.Necs.csproj" />
+  </Folder>
+  <Folder Name="/Providers/OfflineFiles/">
+    <Project Path="ISL.Providers.ReIdentification.OfflineFileSources.Tests.Acceptance/ISL.Providers.ReIdentification.OfflineFileSources.Tests.Acceptance.csproj" />
+    <Project Path="ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit/ISL.Providers.ReIdentification.OfflineFileSources.Tests.Unit.csproj" />
+    <Project Path="ISL.Providers.ReIdentification.OfflineFileSources/ISL.Providers.ReIdentification.OfflineFileSources.csproj" />
+  </Folder>
+  <Project Path="ISL.Providers.ReIdentification.Infrastructure/ISL.Providers.ReIdentification.Infrastructure.csproj" />
+</Solution>
