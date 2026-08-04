@@ -23,10 +23,10 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Brokers.OfflineSourc
         private async ValueTask<List<IdentificationPair>> InitializeAsync(
             OfflineSourceReIdentificationConfigurations offlineSourceReIdentificationConfiguration)
         {
-            string fileContents =
-                await File.ReadAllTextAsync(offlineSourceReIdentificationConfiguration.FilePath);
+            await using var csvClient = new CsvClient();
 
-            var csvClient = new CsvClient();
+            await using FileStream fileStream =
+                File.OpenRead(offlineSourceReIdentificationConfiguration.FilePath);
 
             Dictionary<string, int> fieldMappings = new Dictionary<string, int>
             {
@@ -34,8 +34,16 @@ namespace ISL.Providers.ReIdentification.OfflineFileSources.Brokers.OfflineSourc
                 { nameof(IdentificationPair.NhsNumber), 1 },
             };
 
-            return await csvClient.MapCsvToObjectAsync<IdentificationPair>(
-                fileContents, offlineSourceReIdentificationConfiguration.HasHeaderRecord, fieldMappings);
+            var identificationPairs = new List<IdentificationPair>();
+
+            await foreach (IdentificationPair identificationPair in
+                csvClient.MapCsvToObjectAsync<IdentificationPair>(
+                    fileStream, offlineSourceReIdentificationConfiguration.HasHeaderRecord, fieldMappings))
+            {
+                identificationPairs.Add(identificationPair);
+            }
+
+            return identificationPairs;
         }
 
     }
